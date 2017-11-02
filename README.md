@@ -9,6 +9,8 @@ Install by running:
 
 Ensure you set the Environment Variables:
 
+`AWS_REGION`
+
 `AWS_ACCESS_KEY_ID`
 
 `AWS_SECRET_ACCESS_KEY`

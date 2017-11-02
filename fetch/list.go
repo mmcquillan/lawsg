@@ -2,7 +2,7 @@ package fetch
 
 import (
 	"fmt"
-	"log"
+	"os"
 	"sort"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -17,7 +17,8 @@ func List() {
 	var groups []string
 	sess, err := session.NewSession()
 	if err != nil {
-		log.Fatal("ERROR: Cannot create an AWS session ", err)
+		fmt.Println("ERROR: Cannot create an AWS session ", err)
+		os.Exit(1)
 	}
 	svc := cloudwatchlogs.New(sess)
 	for count >= block {
@@ -29,7 +30,8 @@ func List() {
 		}
 		resp, err := svc.DescribeLogGroups(params)
 		if err != nil {
-			log.Fatal("ERROR: Cannot make AWS request ", err)
+			fmt.Println("ERROR: Cannot make AWS request ", err)
+			os.Exit(1)
 		}
 		count = len(resp.LogGroups)
 		groupList := make([]string, count, count)

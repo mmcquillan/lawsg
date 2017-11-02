@@ -1,7 +1,7 @@
 package config
 
 import (
-	"log"
+	"fmt"
 	"os"
 	"strconv"
 	"time"
@@ -11,25 +11,27 @@ import (
 )
 
 type Options struct {
-	Group     string
-	Filter    string
-	Stream    string
-	StartTime int64
-	EndTime   int64
-	Number    int64
-	Chunk     int64
-	Tail      bool
-	TimeZone  bool
-	NoTime    bool
-	NoStream  bool
-	NoColor   bool
-	NoWrap    bool
-	TrimLeft  int
-	Last      int
-	Green     string
-	Yellow    string
-	Red       string
-	Debug     bool
+	Group      string
+	Filter     string
+	Stream     string
+	StartTime  int64
+	EndTime    int64
+	Number     int64
+	Chunk      int64
+	Tail       bool
+	TimeZone   bool
+	NoGroup    bool
+	NoStream   bool
+	NoTime     bool
+	NoColor    bool
+	NoWrap     bool
+	TrimLeft   int
+	Last       int
+	DateFormat string
+	Green      string
+	Yellow     string
+	Red        string
+	Debug      bool
 }
 
 func Parse() (options Options) {
@@ -43,13 +45,15 @@ func Parse() (options Options) {
 	last := kingpin.Flag("last", "Last X minutes of logs").Short('l').Int()
 	number := kingpin.Flag("number", "Number of Rows").Short('n').Int64()
 	chunk := kingpin.Flag("chunk", "Chunk Size").Int64()
+	noGroup := kingpin.Flag("ng", "No Group").Bool()
 	noStream := kingpin.Flag("ns", "No Streams").Bool()
 	noWrap := kingpin.Flag("nw", "No Wrapping Lines (will be truncated)").Bool()
 	noColor := kingpin.Flag("nc", "No Color").Bool()
 	noTime := kingpin.Flag("nt", "No Time").Bool()
-	timeZone := kingpin.Flag("tz", "Convert my Time Zone").Short('z').Bool()
+	timeZone := kingpin.Flag("tz", "Convert to my Time Zone").Short('z').Bool()
 	tail := kingpin.Flag("tail", "Tail of Log").Short('t').Bool()
 	trimLeft := kingpin.Flag("trimleft", "Trim Left of Event Message").Int()
+	dateFormat := kingpin.Flag("dateformat", "Date Format for the timestamp (https://golang.org/src/time/format.go)").String()
 	green := kingpin.Flag("green", "Green Highlight (comma seperated)").String()
 	yellow := kingpin.Flag("yellow", "Yellow Highlight (comma seperated)").String()
 	red := kingpin.Flag("red", "Red Highlight (comma seperated)").String()
@@ -68,10 +72,12 @@ func Parse() (options Options) {
 	options.Tail = setBool(false, "LAWSG_TAIL", *tail)
 	options.TimeZone = setBool(false, "LAWSG_TIMEZONE", *timeZone)
 	options.NoTime = setBool(false, "LAWSG_NO_TIME", *noTime)
+	options.NoGroup = setBool(false, "LAWSG_NO_GROUP", *noGroup)
 	options.NoStream = setBool(false, "LAWSG_NO_STREAM", *noStream)
 	options.NoColor = setBool(false, "LAWSG_NO_COLOR", *noColor)
 	options.NoWrap = setBool(false, "LAWSG_NOWRAP", *noWrap)
 	options.TrimLeft = setInt(0, "LAWSG_TRIM_LEFT", *trimLeft)
+	options.DateFormat = setString("", "LAWSG_DATE_FORMAT", *dateFormat)
 	options.Green = setString("", "LAWSG_GREEN", *green)
 	options.Yellow = setString("", "LAWSG_YELLOW", *yellow)
 	options.Red = setString("", "LAWSG_RED", *red)
@@ -79,7 +85,8 @@ func Parse() (options Options) {
 
 	// run some validation
 	if options.EndTime < options.StartTime {
-		log.Fatal("ERROR: Start Time is before End Time")
+		fmt.Println("ERROR: Start Time is before End Time")
+		os.Exit(1)
 	}
 	if options.Last > 0 {
 		options.StartTime = time.Now().Unix()*1000 - int64(options.Last*60*1000)

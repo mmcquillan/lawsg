@@ -2,7 +2,7 @@ package fetch
 
 import (
 	"fmt"
-	"log"
+	"os"
 	"regexp"
 	"strings"
 	"time"
@@ -24,7 +24,8 @@ func Logs(options config.Options) {
 	nextToken := ""
 	sess, err := session.NewSession()
 	if err != nil {
-		log.Fatal("ERROR: Cannot create an AWS session ", err)
+		fmt.Println("ERROR: Cannot create an AWS session ", err)
+		os.Exit(1)
 	}
 	svc := cloudwatchlogs.New(sess)
 
@@ -81,7 +82,8 @@ func Logs(options config.Options) {
 		// pull logs
 		resp, err := svc.FilterLogEvents(params)
 		if err != nil {
-			log.Fatal("ERROR: Cannot make AWS request ", err)
+			fmt.Println("ERROR: Cannot make AWS request ", err)
+			os.Exit(1)
 		}
 
 		// loop over events
@@ -90,19 +92,30 @@ func Logs(options config.Options) {
 			// init event
 			msg := ""
 
+			// handle no group
+			if !options.NoGroup {
+				msg += color.GreenString(options.Group) + " "
+			}
+
 			// handle no stream
 			if !options.NoStream {
 				s := len(*event.LogStreamName)
-				msg += *event.LogStreamName + strings.Repeat(" ", streamLen-s+1)
+				msg += color.CyanString(*event.LogStreamName) + strings.Repeat(" ", streamLen-s+1)
+			}
+
+			// handle date format
+			dateFormat := time.RFC3339
+			if options.DateFormat != "" {
+				dateFormat = options.DateFormat
 			}
 
 			// handle no time and tz
 			if !options.NoTime {
 				t := time.Unix(*event.Timestamp/1000, 0)
 				if options.TimeZone {
-					msg += fmt.Sprintf("%s ", t.Local().Format(time.RFC3339))
+					msg += fmt.Sprintf("%s ", t.Local().Format(dateFormat))
 				} else {
-					msg += fmt.Sprintf("%s ", t.UTC().Format(time.RFC3339))
+					msg += fmt.Sprintf("%s ", t.UTC().Format(dateFormat))
 				}
 			}
 

@@ -1,7 +1,8 @@
 package fetch
 
 import (
-	"log"
+	"fmt"
+	"os"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -15,7 +16,8 @@ func Streams(options config.Options) (streams []string) {
 	nextToken := ""
 	sess, err := session.NewSession()
 	if err != nil {
-		log.Fatal("ERROR: Cannot create an AWS session ", err)
+		fmt.Println("ERROR: Cannot create an AWS session ", err)
+		os.Exit(1)
 	}
 	svc := cloudwatchlogs.New(sess)
 	for count >= block {
@@ -33,7 +35,8 @@ func Streams(options config.Options) (streams []string) {
 		}
 		resp, err := svc.DescribeLogStreams(params)
 		if err != nil {
-			log.Fatal("ERROR: Cannot make AWS request ", err)
+			fmt.Println("ERROR: Cannot make AWS request ", err)
+			os.Exit(1)
 		}
 		for _, s := range resp.LogStreams {
 			if *s.LastEventTimestamp > options.StartTime-(1000*60*60) {
