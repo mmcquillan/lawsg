@@ -126,19 +126,25 @@ func Logs(options config.Options) {
 			// handle green
 			if options.Green != "" {
 				reColor := color.New(color.BgGreen).SprintFunc()
-				msg = strings.Replace(msg, options.Green, reColor(options.Green), -1)
+				for _, s := range strings.Split(options.Green, ",") {
+					msg = strings.Replace(msg, s, reColor(s), -1)
+				}
 			}
 
 			// handle yellow
 			if options.Yellow != "" {
 				reColor := color.New(color.BgYellow).SprintFunc()
-				msg = strings.Replace(msg, options.Yellow, reColor(options.Yellow), -1)
+				for _, s := range strings.Split(options.Yellow, ",") {
+					msg = strings.Replace(msg, s, reColor(s), -1)
+				}
 			}
 
 			// handle red
 			if options.Red != "" {
 				reColor := color.New(color.BgRed).SprintFunc()
-				msg = strings.Replace(msg, options.Red, reColor(options.Red), -1)
+				for _, s := range strings.Split(options.Red, ",") {
+					msg = strings.Replace(msg, s, reColor(s), -1)
+				}
 			}
 
 			// handle no color
