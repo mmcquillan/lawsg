@@ -1,5 +1,20 @@
 # lawsg - The AWS Cloudwatch Logs Viewer
 
+
+Install by running:
+
+`go get github.com/mmcquillan/lawsg`
+
+
+
+Ensure you set the Environment Variables:
+
+`AWS_ACCESS_KEY_ID`
+`AWS_SECRET_ACCESS_KEY`
+
+
+
+Command Line Arguments
 ```
 usage: lawsg [<flags>] <group>
 
