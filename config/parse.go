@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/araddon/dateparse"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 
@@ -36,8 +37,8 @@ func Parse() (options Options) {
 	group := kingpin.Arg("group", "Log Group or 'list' to show groups").Required().String()
 	filter := kingpin.Flag("filter", "Cloudwatch Filter Pattern").Short('f').String()
 	stream := kingpin.Flag("stream", "Stream Filter (can be a comma seperated list)").String()
-	startTime := kingpin.Flag("starttime", "Start Time").Short('s').Int64()
-	endTime := kingpin.Flag("endtime", "End Time").Short('e').Int64()
+	startTime := kingpin.Flag("starttime", "Start Time").Short('s').String()
+	endTime := kingpin.Flag("endtime", "End Time").Short('e').String()
 	number := kingpin.Flag("number", "Number of Rows").Short('n').Int64()
 	chunk := kingpin.Flag("chunk", "Chunk Size").Int64()
 	noStream := kingpin.Flag("ns", "No Streams").Bool()
@@ -57,8 +58,8 @@ func Parse() (options Options) {
 	options.Group = *group
 	options.Filter = setString("", "LAWSG_FILTER", *filter)
 	options.Stream = setString("", "LAWSG_STREAM", *stream)
-	options.StartTime = setInt64(time.Now().Add(-10*time.Minute).Unix()*1000, "LAWSG_STARTTIME", *startTime)
-	options.EndTime = setInt64(time.Now().Unix()*1000, "LAWSG_ENDTIME", *endTime)
+	options.StartTime = setDate(time.Now().Add(-10*time.Minute).Unix()*1000, "LAWSG_STARTTIME", *startTime)
+	options.EndTime = setDate(time.Now().Unix()*1000, "LAWSG_ENDTIME", *endTime)
 	options.Number = setInt64(0, "LAWSG_NUMBER", *number)
 	options.Chunk = setInt64(10000, "LAWSG_CHUNK", *chunk)
 	options.Tail = setBool(false, "LAWSG_TAIL", *tail)
@@ -88,6 +89,21 @@ func setString(def string, env string, flg string) (val string) {
 	}
 	if flg != "" {
 		val = flg
+	}
+	return val
+}
+
+func setDate(def int64, env string, flg string) (val int64) {
+	val = def
+	if os.Getenv(env) != "" {
+		if t, err := dateparse.ParseIn(os.Getenv(env), time.UTC); err == nil {
+			val = t.Unix() * 1000
+		}
+	}
+	if flg != "" {
+		if t, err := dateparse.ParseIn(flg, time.UTC); err == nil {
+			val = t.Unix() * 1000
+		}
 	}
 	return val
 }

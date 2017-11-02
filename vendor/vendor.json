@@ -21,6 +21,12 @@
 			"revisionTime": "2015-10-22T06:55:26Z"
 		},
 		{
+			"checksumSHA1": "sMNGYak6MM8KcTSbVRS4ADbuauM=",
+			"path": "github.com/araddon/dateparse",
+			"revision": "ca7e753bd149dae747d76fa7d52b20b920f3a814",
+			"revisionTime": "2017-10-07T16:34:59Z"
+		},
+		{
 			"checksumSHA1": "YhARllgSKHk/9SL4UuyM7kpXFnk=",
 			"path": "github.com/aws/aws-sdk-go/aws",
 			"revision": "9a39573eeb2173a5b2b08083790b6c9dfc2d2d9f",
