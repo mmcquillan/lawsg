@@ -10,6 +10,7 @@ Install by running:
 Ensure you set the Environment Variables:
 
 `AWS_ACCESS_KEY_ID`
+
 `AWS_SECRET_ACCESS_KEY`
 
 
@@ -41,4 +42,27 @@ Flags:
 
 Args:
   <group>  Log Group or 'list' to show groups
+```
+
+
+Environment Variables
+```
+LAWSG_FILTER
+LAWSG_STREAM
+LAWSG_STARTTIME
+LAWSG_ENDTIME
+LAWSG_LAST
+LAWSG_NUMBER
+LAWSG_CHUNK
+LAWSG_TAIL
+LAWSG_TIMEZONE
+LAWSG_NO_TIME
+LAWSG_NO_STREAM
+LAWSG_NO_COLOR
+LAWSG_NOWRAP
+LAWSG_TRIM_LEFT
+LAWSG_GREEN
+LAWSG_YELLOW
+LAWSG_RED
+LAWSG_DEBUG
 ```
