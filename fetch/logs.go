@@ -51,7 +51,7 @@ func Logs(options config.Options) {
 		}
 
 		// set the chunk to request
-		if options.Number-count < options.Chunk {
+		if options.Number > 0 && options.Number-count < options.Chunk {
 			params.Limit = aws.Int64(options.Number - count)
 		} else {
 			params.Limit = aws.Int64(options.Chunk)
