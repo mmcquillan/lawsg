@@ -25,6 +25,7 @@ type Options struct {
 	NoColor   bool
 	NoWrap    bool
 	TrimLeft  int
+	Last      int
 	Green     string
 	Yellow    string
 	Red       string
@@ -36,9 +37,10 @@ func Parse() (options Options) {
 	// set flags
 	group := kingpin.Arg("group", "Log Group or 'list' to show groups").Required().String()
 	filter := kingpin.Flag("filter", "Cloudwatch Filter Pattern").Short('f').String()
-	stream := kingpin.Flag("stream", "Stream Filter (can be a comma seperated list)").String()
+	stream := kingpin.Flag("stream", "Stream Filter (comma seperated)").String()
 	startTime := kingpin.Flag("starttime", "Start Time").Short('s').String()
 	endTime := kingpin.Flag("endtime", "End Time").Short('e').String()
+	last := kingpin.Flag("last", "Last X minutes of logs").Short('l').Int()
 	number := kingpin.Flag("number", "Number of Rows").Short('n').Int64()
 	chunk := kingpin.Flag("chunk", "Chunk Size").Int64()
 	noStream := kingpin.Flag("ns", "No Streams").Bool()
@@ -48,9 +50,9 @@ func Parse() (options Options) {
 	timeZone := kingpin.Flag("tz", "Convert my Time Zone").Short('z').Bool()
 	tail := kingpin.Flag("tail", "Tail of Log").Short('t').Bool()
 	trimLeft := kingpin.Flag("trimleft", "Trim Left of Event Message").Int()
-	green := kingpin.Flag("green", "Green Highlight").String()
-	yellow := kingpin.Flag("yellow", "Yellow Highlight").String()
-	red := kingpin.Flag("red", "Red Highlight").String()
+	green := kingpin.Flag("green", "Green Highlight (comma seperated)").String()
+	yellow := kingpin.Flag("yellow", "Yellow Highlight (comma seperated)").String()
+	red := kingpin.Flag("red", "Red Highlight (comma seperated)").String()
 	debug := kingpin.Flag("debug", "Debug").Bool()
 	kingpin.Parse()
 
@@ -60,6 +62,7 @@ func Parse() (options Options) {
 	options.Stream = setString("", "LAWSG_STREAM", *stream)
 	options.StartTime = setDate(time.Now().Add(-10*time.Minute).Unix()*1000, "LAWSG_STARTTIME", *startTime)
 	options.EndTime = setDate(time.Now().Unix()*1000, "LAWSG_ENDTIME", *endTime)
+	options.Last = setInt(0, "LAWSG_LAST", *last)
 	options.Number = setInt64(0, "LAWSG_NUMBER", *number)
 	options.Chunk = setInt64(10000, "LAWSG_CHUNK", *chunk)
 	options.Tail = setBool(false, "LAWSG_TAIL", *tail)
@@ -77,6 +80,10 @@ func Parse() (options Options) {
 	// run some validation
 	if options.EndTime < options.StartTime {
 		log.Fatal("ERROR: Start Time is before End Time")
+	}
+	if options.Last > 0 {
+		options.StartTime = time.Now().Unix()*1000 - int64(options.Last*60*1000)
+		options.EndTime = time.Now().Unix() * 1000
 	}
 
 	return options

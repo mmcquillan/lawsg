@@ -21,9 +21,10 @@ usage: lawsg [<flags>] <group>
 Flags:
       --help                 Show context-sensitive help (also try --help-long and --help-man).
   -f, --filter=FILTER        Cloudwatch Filter Pattern
-      --stream=STREAM        Stream Filter (can be a comma seperated list)
+      --stream=STREAM        Stream Filter (comma seperated)
   -s, --starttime=STARTTIME  Start Time
   -e, --endtime=ENDTIME      End Time
+  -l, --last=LAST            Last X minutes of logs
   -n, --number=NUMBER        Number of Rows
       --chunk=CHUNK          Chunk Size
       --ns                   No Streams
@@ -33,9 +34,9 @@ Flags:
   -z, --tz                   Convert my Time Zone
   -t, --tail                 Tail of Log
       --trimleft=TRIMLEFT    Trim Left of Event Message
-      --green=GREEN          Green Highlight
-      --yellow=YELLOW        Yellow Highlight
-      --red=RED              Red Highlight
+      --green=GREEN          Green Highlight (comma seperated)
+      --yellow=YELLOW        Yellow Highlight (comma seperated)
+      --red=RED              Red Highlight (comma seperated)
       --debug                Debug
 
 Args:
