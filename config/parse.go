@@ -51,7 +51,7 @@ func Parse() (options Options) {
 	noColor := kingpin.Flag("nc", "No Color").Bool()
 	noTime := kingpin.Flag("nt", "No Time").Bool()
 	timeZone := kingpin.Flag("tz", "Convert to my Time Zone").Short('z').Bool()
-	tail := kingpin.Flag("tail", "Tail of Log").Short('t').Bool()
+	tail := kingpin.Flag("tail", "Tail of Log (experimental)").Short('t').Bool()
 	trimLeft := kingpin.Flag("trimleft", "Trim Left of Event Message").Int()
 	dateFormat := kingpin.Flag("dateformat", "Date Format for the timestamp (https://golang.org/src/time/format.go)").String()
 	green := kingpin.Flag("green", "Green Highlight (comma seperated)").String()

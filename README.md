@@ -36,7 +36,7 @@ Flags:
       --nc                     No Color
       --nt                     No Time
   -z, --tz                     Convert to my Time Zone
-  -t, --tail                   Tail of Log
+  -t, --tail                   Tail of Log (experimental)
       --trimleft=TRIMLEFT      Trim Left of Event Message
       --dateformat=DATEFORMAT  Date Format for the timestamp (https://golang.org/src/time/format.go)
       --green=GREEN            Green Highlight (comma seperated)
@@ -60,8 +60,9 @@ LAWSG_NUMBER
 LAWSG_CHUNK
 LAWSG_TAIL
 LAWSG_TIMEZONE
-LAWSG_NO_TIME
+LAWSG_NO_GROUP
 LAWSG_NO_STREAM
+LAWSG_NO_TIME
 LAWSG_NO_COLOR
 LAWSG_NOWRAP
 LAWSG_TRIM_LEFT

@@ -113,9 +113,9 @@ func Logs(options config.Options) {
 			if !options.NoTime {
 				t := time.Unix(*event.Timestamp/1000, 0)
 				if options.TimeZone {
-					msg += fmt.Sprintf("%s ", t.Local().Format(dateFormat))
+					msg += color.MagentaString(t.Local().Format(dateFormat)) + " "
 				} else {
-					msg += fmt.Sprintf("%s ", t.UTC().Format(dateFormat))
+					msg += color.MagentaString(t.UTC().Format(dateFormat)) + " "
 				}
 			}
 
