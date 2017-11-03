@@ -3,7 +3,6 @@ package fetch
 import (
 	"fmt"
 	"os"
-	"regexp"
 	"strings"
 	"time"
 
@@ -12,16 +11,20 @@ import (
 	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
 	"github.com/fatih/color"
 	"github.com/mmcquillan/lawsg/config"
+	"github.com/mmcquillan/lawsg/util"
 	terminal "github.com/wayneashleyberry/terminal-dimensions"
 )
 
 func Logs(options config.Options) {
 
 	// initialize
-	width, _ := terminal.Width()
+	w, _ := terminal.Width()
+	width := int(w)
 	count := int64(0)
 	loop := true
 	nextToken := ""
+
+	// aws session
 	sess, err := session.NewSession()
 	if err != nil {
 		fmt.Println("ERROR: Cannot create an AWS session ", err)
@@ -129,13 +132,6 @@ func Logs(options config.Options) {
 				msg += *event.Message
 			}
 
-			// handle no wrap
-			if options.NoWrap {
-				if uint(len(msg)) > width {
-					msg = msg[0:(width-4)] + "..."
-				}
-			}
-
 			// handle green
 			if options.Green != "" {
 				reColor := color.New(color.BgGreen).SprintFunc()
@@ -162,10 +158,21 @@ func Logs(options config.Options) {
 
 			// handle no color
 			if options.NoColor {
-				regx := regexp.MustCompile("\\033\\[[0-9;]*m")
-				msg = regx.ReplaceAllString(msg, "")
+				msg = util.Unformat(msg)
 			}
 
+			// handle no wrap
+			if options.NoWrap {
+				if len(msg) > width {
+					offset := width - 4
+					msg = msg[0:offset] + "..."
+				}
+				if options.Debug {
+					msg += "\n" + strings.Repeat("---------|", int(width/10))
+				}
+			}
+
+			// output and reset
 			fmt.Printf("%s\n", msg)
 			color.Unset()
 			count++
