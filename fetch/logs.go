@@ -175,6 +175,12 @@ func Logs(options config.Options) {
 			// output and reset
 			fmt.Printf("%s\n", msg)
 			color.Unset()
+
+			// handle spacing
+			if options.Spacing {
+				fmt.Printf("\n")
+			}
+
 			count++
 
 		}

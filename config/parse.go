@@ -20,6 +20,7 @@ type Options struct {
 	Chunk      int64
 	Tail       bool
 	TimeZone   bool
+	Spacing    bool
 	NoGroup    bool
 	NoStream   bool
 	NoTime     bool
@@ -45,6 +46,7 @@ func Parse() (options Options) {
 	last := kingpin.Flag("last", "Last X minutes of logs").Short('l').Int()
 	number := kingpin.Flag("number", "Number of Rows").Short('n').Int64()
 	chunk := kingpin.Flag("chunk", "Chunk Size").Int64()
+	spacing := kingpin.Flag("spacing", "Spacing between Events").Bool()
 	noGroup := kingpin.Flag("ng", "No Group").Bool()
 	noStream := kingpin.Flag("ns", "No Streams").Bool()
 	noWrap := kingpin.Flag("nw", "No Wrapping Lines (will be truncated)").Bool()
@@ -71,6 +73,7 @@ func Parse() (options Options) {
 	options.Chunk = setInt64(10000, "LAWSG_CHUNK", *chunk)
 	options.Tail = setBool(false, "LAWSG_TAIL", *tail)
 	options.TimeZone = setBool(false, "LAWSG_TIMEZONE", *timeZone)
+	options.Spacing = setBool(false, "LAWSG_SPACING", *spacing)
 	options.NoTime = setBool(false, "LAWSG_NO_TIME", *noTime)
 	options.NoGroup = setBool(false, "LAWSG_NO_GROUP", *noGroup)
 	options.NoStream = setBool(false, "LAWSG_NO_STREAM", *noStream)
