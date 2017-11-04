@@ -3,9 +3,8 @@ package config
 import (
 	"os"
 	"strconv"
-	"time"
 
-	"github.com/araddon/dateparse"
+	"github.com/mmcquillan/lawsg/util"
 )
 
 // EnvVars - Sets the value if the environment variable exists
@@ -44,9 +43,7 @@ func setString(val string, env string) string {
 
 func setDate(val int64, env string) int64 {
 	if os.Getenv(env) != "" {
-		if t, err := dateparse.ParseIn(os.Getenv(env), time.UTC); err == nil {
-			return t.Unix() * 1000
-		}
+		return util.ParseDate(os.Getenv(env))
 	}
 	return val
 }

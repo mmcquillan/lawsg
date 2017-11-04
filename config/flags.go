@@ -3,9 +3,8 @@ package config
 import (
 	"io/ioutil"
 	"os"
-	"time"
 
-	"github.com/araddon/dateparse"
+	"github.com/mmcquillan/lawsg/util"
 	flag "github.com/ogier/pflag"
 )
 
@@ -25,6 +24,8 @@ func Flags(options *Options) {
 	f.Int64VarP(&options.Number, "number", "n", options.Number, "")
 	f.Int64Var(&options.Chunk, "chunk", options.Chunk, "")
 	f.BoolVarP(&options.Tail, "tail", "t", options.Tail, "")
+	var watch bool
+	f.BoolVar(&watch, "watch", false, "")
 	f.BoolVar(&options.TimeZone, "tz", options.TimeZone, "")
 	f.BoolVar(&options.Spacing, "spacing", options.Spacing, "")
 	f.BoolVar(&options.NoGroup, "ng", options.NoGroup, "")
@@ -42,12 +43,12 @@ func Flags(options *Options) {
 	f.SetOutput(ioutil.Discard)
 	f.Parse(os.Args)
 
-	if stp, err := dateparse.ParseIn(st, time.UTC); err == nil {
-		options.StartTime = stp.Unix() * 1000
-	}
+	options.StartTime = util.ParseDate(st)
+	options.EndTime = util.ParseDate(et)
 
-	if etp, err := dateparse.ParseIn(et, time.UTC); err == nil {
-		options.EndTime = etp.Unix() * 1000
+	// for cross compatability with other tools
+	if watch {
+		options.Tail = true
 	}
 
 }

@@ -3,7 +3,8 @@ package config
 import (
 	"fmt"
 	"os"
-	"time"
+
+	"github.com/mmcquillan/lawsg/util"
 )
 
 func Validate(options *Options) {
@@ -37,8 +38,8 @@ func Validate(options *Options) {
 		os.Exit(1)
 	}
 	if options.Last > 0 {
-		options.StartTime = time.Now().Unix()*1000 - int64(options.Last*60*1000)
-		options.EndTime = time.Now().Unix() * 1000
+		options.StartTime = util.ParseDate("10m ago")
+		options.EndTime = util.ParseDate("now")
 	}
 
 	// debug out the options

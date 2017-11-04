@@ -1,7 +1,7 @@
 package config
 
 import (
-	"time"
+	"github.com/mmcquillan/lawsg/util"
 )
 
 // Defaults - returns the options with defaults set
@@ -10,8 +10,8 @@ func Defaults(options *Options) {
 	options.Group = ""
 	options.Filter = ""
 	options.Stream = ""
-	options.StartTime = time.Now().Add(-10*time.Minute).Unix() * 1000
-	options.EndTime = time.Now().Unix() * 1000
+	options.StartTime = util.ParseDate("10m ago")
+	options.EndTime = util.ParseDate("now")
 	options.Number = 0
 	options.Chunk = 10000
 	options.Tail = false

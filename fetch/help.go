@@ -103,6 +103,19 @@ func Help(options config.Options) {
 		fmt.Println("")
 	}
 
+	if oneOf(options.Group, "date,datetime,time,more") {
+		fmt.Println("DATETIME EXAMPLES:")
+		fmt.Println("  'now' 'n' current time")
+		fmt.Println("  '12s ago' twelve seconds ago")
+		fmt.Println("  '12m ago' twelve minutes ago")
+		fmt.Println("  '12h ago' twelve hours ago")
+		fmt.Println("  '12d ago' twelve days ago")
+		fmt.Println("  '12w ago' twelve weeks ago")
+		fmt.Println("  '12y ago' twelve years ago")
+		fmt.Println("  ...and most every other parsable date/time")
+		fmt.Println("")
+	}
+
 	if oneOf(options.Group, "aws,more") {
 		fmt.Println("AWS CREDENTIALS:")
 		fmt.Println("  Normal AWS Env Vars are used")
