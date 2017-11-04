@@ -35,7 +35,7 @@ func Help(options config.Options) {
 
 	if oneOf(options.Group, "filter,less,more") {
 		fmt.Println("FILTER OPTIONS:")
-		fmt.Println("  -c --command    Command to run groups, stream, get, help (or first argument)")
+		fmt.Println("  -c --command    Command to run groups, streams, get, help (or first argument)")
 		fmt.Println("  -g --group      Group for the command (or second argument)")
 		fmt.Println("  -f --filter     Coudwatch Filter for Event Logs")
 		fmt.Println("  -m --stream     Comman delimited list of Streams")
@@ -77,7 +77,7 @@ func Help(options config.Options) {
 
 	if oneOf(options.Group, "env,environment,more") {
 		fmt.Println("ENVIRONMENT VARIABLES:")
-		fmt.Println("  LAWSG_COMMAND      Command to run groups, stream, get, help (or first argument)")
+		fmt.Println("  LAWSG_COMMAND      Command to run groups, streams, get, help (or first argument)")
 		fmt.Println("  LAWSG_GROUP        Group for the command (or second argument)")
 		fmt.Println("  LAWSG_FILTER       Coudwatch Filter for Event Logs")
 		fmt.Println("  LAWSG_STREAM       Comman delimited list of Streams")
@@ -114,7 +114,7 @@ func Help(options config.Options) {
 
 	if oneOf(options.Group, "about,more") {
 		fmt.Println("ABOUT:")
-		fmt.Println("  Use and Contribute via the MIT License")
+		fmt.Println("  Free to Use and Contribute via the MIT License")
 		fmt.Println("  Maintained by Matt McQuillan")
 		fmt.Println("  https://github.com/mmcquillan/lawsg")
 		fmt.Println("")

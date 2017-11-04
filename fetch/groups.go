@@ -8,9 +8,11 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
+	"github.com/fatih/color"
+	"github.com/mmcquillan/lawsg/config"
 )
 
-func Groups() {
+func Groups(options config.Options) {
 	block := 50
 	count := block
 	nextToken := ""
@@ -45,6 +47,10 @@ func Groups() {
 	}
 	sort.Strings(groups)
 	for _, group := range groups {
-		fmt.Printf("%s\n", group)
+		if options.NoColor {
+			fmt.Printf("%s\n", group)
+		} else {
+			color.Green("%s\n", group)
+		}
 	}
 }

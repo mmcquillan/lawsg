@@ -16,7 +16,7 @@ func main() {
 	config.Validate(&options)
 	switch options.Command {
 	case "groups":
-		fetch.Groups()
+		fetch.Groups(options)
 	case "streams":
 		fetch.Streams(options)
 	case "get":
