@@ -3,6 +3,7 @@ package fetch
 import (
 	"fmt"
 	"os"
+	"sort"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -10,7 +11,29 @@ import (
 	"github.com/mmcquillan/lawsg/config"
 )
 
-func Streams(options config.Options) (streams []string) {
+// Streams - Pulls back the list of streams for a given group
+func Streams(options config.Options) {
+	streams := getStreams(options)
+	sort.Strings(streams)
+	for _, s := range streams {
+		fmt.Println(s)
+	}
+}
+
+// StreamLength - Get the longest number of characters for a stream
+func StreamLength(options config.Options) (length int) {
+	streams := getStreams(options)
+	length = 0
+	for _, s := range streams {
+		l := len(s)
+		if l > length {
+			length = l
+		}
+	}
+	return length
+}
+
+func getStreams(options config.Options) (streams []string) {
 	block := 50
 	count := block
 	nextToken := ""
@@ -49,16 +72,4 @@ func Streams(options config.Options) (streams []string) {
 		}
 	}
 	return streams
-}
-
-func StreamLength(options config.Options) (length int) {
-	streams := Streams(options)
-	length = 0
-	for _, s := range streams {
-		l := len(s)
-		if l > length {
-			length = l
-		}
-	}
-	return length
 }

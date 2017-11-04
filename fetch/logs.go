@@ -15,6 +15,7 @@ import (
 	terminal "github.com/wayneashleyberry/terminal-dimensions"
 )
 
+// Logs - Pulls Event Logs based on option filters
 func Logs(options config.Options) {
 
 	// initialize

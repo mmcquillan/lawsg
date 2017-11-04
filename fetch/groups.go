@@ -10,7 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
 )
 
-func List() {
+func Groups() {
 	block := 50
 	count := block
 	nextToken := ""

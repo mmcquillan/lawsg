@@ -5,9 +5,9 @@ import (
 	"os"
 )
 
-func Env() {
+// Aws - checks that AWS creds exist
+func Aws() {
 
-	// parse AWS creds
 	if os.Getenv("AWS_REGION") == "" {
 		fmt.Println("ERROR: Missing environment variable AWS_REGION")
 		os.Exit(1)
