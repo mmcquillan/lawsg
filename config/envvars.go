@@ -26,7 +26,6 @@ func EnvVars(options *Options) {
 	options.NoColor = setBool(options.NoColor, "LAWSG_NO_COLOR")
 	options.NoWrap = setBool(options.NoWrap, "LAWSG_NO_WRAP")
 	options.TrimLeft = setInt(options.TrimLeft, "LAWSG_TRIM_LEFT")
-	options.Last = setInt(options.Last, "LAWSG_LAST")
 	options.DateFormat = setString(options.DateFormat, "LAWSG_DATE_FORMAT")
 	options.Green = setString(options.Green, "LAWSG_GREEN")
 	options.Yellow = setString(options.Yellow, "LAWSG_YELLOW")

@@ -3,8 +3,6 @@ package config
 import (
 	"fmt"
 	"os"
-
-	"github.com/mmcquillan/lawsg/util"
 )
 
 func Validate(options *Options) {
@@ -36,10 +34,6 @@ func Validate(options *Options) {
 	if options.EndTime < options.StartTime {
 		fmt.Println("ERROR: Start Time is before End Time")
 		os.Exit(1)
-	}
-	if options.Last > 0 {
-		options.StartTime = util.ParseDate("10m ago")
-		options.EndTime = util.ParseDate("now")
 	}
 
 	// debug out the options

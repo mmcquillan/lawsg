@@ -34,7 +34,6 @@ func Flags(options *Options) {
 	f.BoolVar(&options.NoColor, "nc", options.NoColor, "")
 	f.BoolVar(&options.NoWrap, "nw", options.NoWrap, "")
 	f.IntVar(&options.TrimLeft, "trimleft", options.TrimLeft, "")
-	f.IntVarP(&options.Last, "last", "l", options.Last, "")
 	f.StringVar(&options.DateFormat, "dateformat", options.DateFormat, "")
 	f.StringVar(&options.Green, "green", options.Green, "")
 	f.StringVar(&options.Yellow, "yellow", options.Yellow, "")

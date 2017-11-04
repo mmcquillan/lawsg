@@ -23,7 +23,6 @@ func Defaults(options *Options) {
 	options.NoColor = false
 	options.NoWrap = false
 	options.TrimLeft = 0
-	options.Last = 0
 	options.DateFormat = ""
 	options.Green = ""
 	options.Yellow = ""

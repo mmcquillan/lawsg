@@ -43,7 +43,6 @@ func Help(options config.Options) {
 		fmt.Println("  -e --endtime    End Time for the Event Logs [default: now]")
 		fmt.Println("  -n --number     Number of Log Events to show")
 		fmt.Println("  -t --tail       Active tailing of Event Logs (experimental)")
-		fmt.Println("  -l --last       Last X minutes of Log Events")
 		fmt.Println("")
 	}
 
@@ -85,7 +84,6 @@ func Help(options config.Options) {
 		fmt.Println("  LAWSG_END_TIME     End Time for the Event Logs [default: now]")
 		fmt.Println("  LAWSG_NUMBER       Number of Log Events to show")
 		fmt.Println("  LAWSG_TAIL         Active tailing of Event Logs (experimental)")
-		fmt.Println("  LAWSG_LAST         Last X minutes of Log Events")
 		fmt.Println("  LAWSG_TIMEZONE     Convert Event Log display to local time")
 		fmt.Println("  LAWSG_SPACING      Adds spacing between Log Events")
 		fmt.Println("  LAWSG_NO_GROUP     Display No Group column")

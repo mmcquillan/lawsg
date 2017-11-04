@@ -20,7 +20,6 @@ type Options struct {
 	NoColor    bool
 	NoWrap     bool
 	TrimLeft   int
-	Last       int
 	DateFormat string
 	Green      string
 	Yellow     string
