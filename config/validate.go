@@ -39,6 +39,12 @@ func Validate(options *Options) {
 		os.Exit(1)
 	}
 
+	// validate number and tail
+	if options.Tail && options.Number > 0 {
+		fmt.Println("ERROR: Cannot tail and limit the number of Log Events")
+		os.Exit(1)
+	}
+
 	// debug out the options
 	if options.Debug {
 		fmt.Printf("\n==> INPUT: %#v\n", *options)
