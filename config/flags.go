@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 
@@ -40,7 +41,11 @@ func Flags(options *Options) {
 	f.StringVar(&options.Red, "red", options.Red, "")
 	f.BoolVar(&options.Debug, "debug", options.Debug, "")
 	f.SetOutput(ioutil.Discard)
-	f.Parse(os.Args)
+	err := f.Parse(os.Args)
+	if err != nil {
+		fmt.Println("ERROR: ", err)
+		os.Exit(1)
+	}
 
 	if st != "" {
 		options.StartTime = util.ParseDate(st)
