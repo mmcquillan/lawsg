@@ -18,7 +18,7 @@ func Flags(options *Options) {
 	f.StringVarP(&options.Filter, "filter", "f", options.Filter, "")
 	f.StringVarP(&options.Stream, "stream", "m", options.Stream, "")
 	var st string
-	flag.StringVarP(&st, "starttime", "s", "", "")
+	f.StringVarP(&st, "starttime", "s", "", "")
 	var et string
 	f.StringVarP(&et, "endtime", "e", "", "")
 	f.Int64VarP(&options.Number, "number", "n", options.Number, "")
@@ -42,8 +42,12 @@ func Flags(options *Options) {
 	f.SetOutput(ioutil.Discard)
 	f.Parse(os.Args)
 
-	options.StartTime = util.ParseDate(st)
-	options.EndTime = util.ParseDate(et)
+	if st != "" {
+		options.StartTime = util.ParseDate(st)
+	}
+	if et != "" {
+		options.EndTime = util.ParseDate(et)
+	}
 
 	// for cross compatability with other tools
 	if watch {

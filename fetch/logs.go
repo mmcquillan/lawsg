@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
 	"github.com/fatih/color"
+	"github.com/mmcquillan/joda"
 	"github.com/mmcquillan/lawsg/config"
 	"github.com/mmcquillan/lawsg/util"
 	terminal "github.com/wayneashleyberry/terminal-dimensions"
@@ -110,7 +111,7 @@ func Logs(options config.Options) {
 			// handle date format
 			dateFormat := time.RFC3339
 			if options.DateFormat != "" {
-				dateFormat = options.DateFormat
+				dateFormat = joda.Format(options.DateFormat)
 			}
 
 			// handle no time and tz

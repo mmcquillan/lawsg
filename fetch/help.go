@@ -114,6 +114,32 @@ func Help(options config.Options) {
 		fmt.Println("")
 	}
 
+	if oneOf(options.Group, "dateformat,more") {
+		fmt.Println("DATEFORMAT EXAMPLES:")
+		fmt.Println("  Two digit year              y       06")
+		fmt.Println("  Four digit year             Y       2006")
+		fmt.Println("  Long month name             MMMM    January")
+		fmt.Println("  Short month name            MMM     Jan")
+		fmt.Println("  Two digit month             MM      01")
+		fmt.Println("  Single digit month          M       1")
+		fmt.Println("  Two digit day of month      dd      02")
+		fmt.Println("  Single digit day of month   d       2")
+		fmt.Println("  Long day of week            EE      Monday")
+		fmt.Println("  Short day of week           E       Mon")
+		fmt.Println("  Two digit 12 hours          hh      03")
+		fmt.Println("  Single digit 12 hour        h       3")
+		fmt.Println("  Two digit 24 hours          H       15")
+		fmt.Println("  Two digit minutes           mm      04")
+		fmt.Println("  Single digit minutes        m       4")
+		fmt.Println("  Two digit seconds           ss      05")
+		fmt.Println("  Single digit seconds        s       5")
+		fmt.Println("  Milliseconds                S       .0")
+		fmt.Println("  AM/PM                       a       pm")
+		fmt.Println("  Time Zone                   z       MST")
+		fmt.Println("  Time Zone offset            Z       -0700")
+		fmt.Println("")
+	}
+
 	if oneOf(options.Group, "aws,more") {
 		fmt.Println("AWS CREDENTIALS:")
 		fmt.Println("  Normal AWS Env Vars are used")
