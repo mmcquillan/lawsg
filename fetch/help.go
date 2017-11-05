@@ -70,6 +70,7 @@ func Help(options config.Options) {
 	if oneOf(options.Group, "advanced,more") {
 		fmt.Println("ADVANCED OPTIONS:")
 		fmt.Println("     --chunk      Chunk size for retreiving Event Logs [default: 10000]")
+		fmt.Println("     --refresh    Tail Refresh interval in seconds [default: 5]")
 		fmt.Println("     --debug      Debug of Output")
 		fmt.Println("")
 	}
@@ -97,6 +98,7 @@ func Help(options config.Options) {
 		fmt.Println("  LAWSG_YELLOW       Comma delimited Words to highlight Yellow")
 		fmt.Println("  LAWSG_RED          Comma delimited Words to highlight Red")
 		fmt.Println("  LAWSG_CHUNK        Chunk size for retreiving Event Logs [default: 10000]")
+		fmt.Println("  LAWSG_REFRESH      Tail Refresh interval in seconds [default: 5]")
 		fmt.Println("  LAWSG_DEBUG        Debug of Output")
 		fmt.Println("")
 	}

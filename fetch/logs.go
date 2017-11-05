@@ -25,6 +25,7 @@ func Logs(options config.Options) {
 	count := int64(0)
 	loop := true
 	nextToken := ""
+	lastTimestamp := options.EndTime
 
 	// aws session
 	sess, err := session.NewSession()
@@ -183,6 +184,8 @@ func Logs(options config.Options) {
 				fmt.Printf("\n")
 			}
 
+			// keep track
+			lastTimestamp = *event.Timestamp
 			count++
 
 		}
@@ -211,8 +214,9 @@ func Logs(options config.Options) {
 			if options.Debug {
 				fmt.Println("==> Sleeping...")
 			}
-			time.Sleep(3 * 1000 * time.Millisecond)
-			options.Chunk = 200
+			time.Sleep(time.Second * time.Duration(options.Refresh))
+			options.StartTime = lastTimestamp
+			options.EndTime = lastTimestamp + (int64(options.Refresh) * 1000)
 			loop = true
 		}
 

@@ -30,6 +30,7 @@ func EnvVars(options *Options) {
 	options.Green = setString(options.Green, "LAWSG_GREEN")
 	options.Yellow = setString(options.Yellow, "LAWSG_YELLOW")
 	options.Red = setString(options.Red, "LAWSG_RED")
+	options.Refresh = setInt(options.Refresh, "LAWSG_REFRESH")
 	options.Debug = setBool(options.Debug, "LAWSG_DEBUG")
 }
 

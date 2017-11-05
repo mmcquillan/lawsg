@@ -24,5 +24,6 @@ type Options struct {
 	Green      string
 	Yellow     string
 	Red        string
+	Refresh    int
 	Debug      bool
 }

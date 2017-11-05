@@ -27,5 +27,6 @@ func Defaults(options *Options) {
 	options.Green = ""
 	options.Yellow = ""
 	options.Red = ""
+	options.Refresh = 5
 	options.Debug = false
 }
