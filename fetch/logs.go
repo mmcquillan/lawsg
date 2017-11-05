@@ -166,8 +166,12 @@ func Logs(options config.Options) {
 
 			// handle no wrap
 			if options.NoWrap {
-				if len(msg) > width {
+				formatWidth := 4
+				cntFormat := util.CountFormat(msg) * formatWidth
+				if len(msg)-(cntFormat) > width {
 					offset := width - 4
+					cf := util.CountFormat(msg[0:offset]) * formatWidth
+					offset = offset + cf
 					msg = msg[0:offset] + "..."
 				}
 				if options.Debug {
