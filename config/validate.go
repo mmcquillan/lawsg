@@ -3,6 +3,8 @@ package config
 import (
 	"fmt"
 	"os"
+
+	"github.com/mmcquillan/lawsg/util"
 )
 
 func Validate(options *Options) {
@@ -18,8 +20,9 @@ func Validate(options *Options) {
 	}
 
 	// validate command
-	if options.Command != "get" && options.Command != "groups" && options.Command != "streams" {
+	if !util.Member(options.Command, "get,groups,streams,help") {
 		options.Command = "help"
+		options.Group = ""
 	}
 
 	// validate group

@@ -6,7 +6,6 @@ import (
 )
 
 func main() {
-	// http://docs.aws.amazon.com/sdk-for-go/api/service/cloudwatchlogs
 	config.Aws()
 	var options config.Options
 	config.Defaults(&options)
