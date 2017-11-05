@@ -9,3 +9,5 @@
 3. Get started with: `lawsg help more`
 4. Enjoy all your wonderful logs!
 
+[Detailed Help](HELP.md)
+
