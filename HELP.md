@@ -1,10 +1,12 @@
+# LAWSG HELP
 ```
+
 LAWSG - The AWS Cloudwatch Logs Viewer
 
 USAGE:
   lawsg help [ more | <topic name> ]
-  lawsg groups
-  lawsg streams <group name>
+  lawsg groups [options]
+  lawsg streams <group name> [options]
   lawsg get <group name> [options]
 
 FILTER OPTIONS:
@@ -110,4 +112,5 @@ ABOUT:
   Free to Use and Contribute via the MIT License
   Maintained by Matt McQuillan
   https://github.com/mmcquillan/lawsg
+
 ```

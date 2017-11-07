@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"sort"
+	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -54,10 +55,12 @@ func Groups(options config.Options) {
 	}
 	sort.Strings(groups)
 	for _, group := range groups {
-		if options.NoColor {
-			fmt.Printf("%s\n", group)
-		} else {
-			color.Green("%s\n", group)
+		if options.Filter == "" || strings.Contains(group, options.Filter) {
+			if options.NoColor {
+				fmt.Printf("%s\n", group)
+			} else {
+				color.Green("%s\n", group)
+			}
 		}
 	}
 	if options.Cache {

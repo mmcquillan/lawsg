@@ -14,26 +14,30 @@ func Help(options config.Options) {
 		options.Group = "less"
 	}
 
+	if util.Member(options.Group, "docs") {
+		fmt.Println("# LAWSG HELP")
+		fmt.Println("```")
+	}
+
 	fmt.Println("")
 	fmt.Println("LAWSG - The AWS Cloudwatch Logs Viewer")
 	fmt.Println("")
 
 	if util.Member(options.Group, "less") {
-		//fmt.Println("USAGE:")
 		fmt.Println("  lawsg <command> <group> [options]")
 		fmt.Println("")
 	}
 
-	if util.Member(options.Group, "usage,more") {
+	if util.Member(options.Group, "usage,more,docs") {
 		fmt.Println("USAGE:")
 		fmt.Println("  lawsg help [ more | <topic name> ]")
-		fmt.Println("  lawsg groups")
-		fmt.Println("  lawsg streams <group name>")
+		fmt.Println("  lawsg groups [options]")
+		fmt.Println("  lawsg streams <group name> [options]")
 		fmt.Println("  lawsg get <group name> [options]")
 		fmt.Println("")
 	}
 
-	if util.Member(options.Group, "filter,less,more") {
+	if util.Member(options.Group, "filter,less,more,docs") {
 		fmt.Println("FILTER OPTIONS:")
 		fmt.Println("  -f --filter     Coudwatch Filter for Event Logs")
 		fmt.Println("  -m --stream     Comma delimited list of Streams")
@@ -44,7 +48,7 @@ func Help(options config.Options) {
 		fmt.Println("")
 	}
 
-	if util.Member(options.Group, "display,less,more") {
+	if util.Member(options.Group, "display,less,more,docs") {
 		fmt.Println("DISPLAY OPTIONS:")
 		fmt.Println("     --tz         Convert Event Log display to local time")
 		fmt.Println("     --spacing    Adds spacing between Log Events")
@@ -65,7 +69,7 @@ func Help(options config.Options) {
 		fmt.Println("MORE HELP: lawsg help more")
 	}
 
-	if util.Member(options.Group, "advanced,more") {
+	if util.Member(options.Group, "advanced,more,docs") {
 		fmt.Println("ADVANCED OPTIONS:")
 		fmt.Println("  -c --command    Command to run groups, streams, get, help (or first argument)")
 		fmt.Println("  -g --group      Group for the command (or second argument)")
@@ -78,7 +82,7 @@ func Help(options config.Options) {
 		fmt.Println("")
 	}
 
-	if util.Member(options.Group, "env,environment,more") {
+	if util.Member(options.Group, "env,environment,more,docs") {
 		fmt.Println("ENVIRONMENT VARIABLES:")
 		fmt.Println("  LAWSG_COMMAND      Command to run groups, streams, get, help (or first argument)")
 		fmt.Println("  LAWSG_GROUP        Group for the command (or second argument)")
@@ -109,7 +113,7 @@ func Help(options config.Options) {
 		fmt.Println("")
 	}
 
-	if util.Member(options.Group, "date,datetime,time,more") {
+	if util.Member(options.Group, "date,datetime,time,more,docs") {
 		fmt.Println("DATETIME EXAMPLES:")
 		fmt.Println("  'now' 'n' current time")
 		fmt.Println("  '12s ago' twelve seconds ago")
@@ -122,7 +126,7 @@ func Help(options config.Options) {
 		fmt.Println("")
 	}
 
-	if util.Member(options.Group, "dateformat,more") {
+	if util.Member(options.Group, "dateformat,more,docs") {
 		fmt.Println("DATEFORMAT EXAMPLES:")
 		fmt.Println("  Two digit year              y       06")
 		fmt.Println("  Four digit year             Y       2006")
@@ -148,7 +152,7 @@ func Help(options config.Options) {
 		fmt.Println("")
 	}
 
-	if util.Member(options.Group, "aws,more") {
+	if util.Member(options.Group, "aws,more,docs") {
 		fmt.Println("AWS CREDENTIALS:")
 		fmt.Println("  Normal AWS Env Vars are used")
 		fmt.Println("  AWS_REGION")
@@ -157,12 +161,16 @@ func Help(options config.Options) {
 		fmt.Println("")
 	}
 
-	if util.Member(options.Group, "about,more") {
+	if util.Member(options.Group, "about,more,docs") {
 		fmt.Println("ABOUT:")
 		fmt.Println("  Free to Use and Contribute via the MIT License")
 		fmt.Println("  Maintained by Matt McQuillan")
 		fmt.Println("  https://github.com/mmcquillan/lawsg")
 		fmt.Println("")
+	}
+
+	if util.Member(options.Group, "docs") {
+		fmt.Println("```")
 	}
 
 }
