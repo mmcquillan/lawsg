@@ -223,7 +223,7 @@ func Logs(options config.Options) {
 				fmt.Println("==> Sleeping...")
 			}
 			time.Sleep(time.Second * time.Duration(options.Refresh))
-			options.StartTime = lastTimestamp
+			options.StartTime = lastTimestamp + 1
 			options.EndTime = lastTimestamp + (int64(options.Refresh) * 1000)
 			loop = true
 		}
