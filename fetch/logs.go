@@ -23,6 +23,9 @@ func Logs(options config.Options) {
 	w, _ := terminal.Width()
 	width := int(w)
 	count := int64(0)
+	tdiff := int64(0)
+	callcnt := 0
+	streamCnt := 0
 	loop := true
 	nextToken := ""
 	lastTimestamp := options.EndTime
@@ -38,7 +41,7 @@ func Logs(options config.Options) {
 	// get stream length
 	streamLen := 0
 	if !options.NoStream {
-		streamLen = StreamLength(options)
+		streamLen, streamCnt = StreamLength(options)
 	}
 
 	// log pull loop
@@ -190,6 +193,7 @@ func Logs(options config.Options) {
 
 			// keep track
 			lastTimestamp = *event.Timestamp
+			tdiff = tdiff + (*event.IngestionTime - *event.Timestamp)
 			count++
 
 		}
@@ -229,5 +233,22 @@ func Logs(options config.Options) {
 			fmt.Printf("==> Completed Loop token %s - continue %t\n", nextToken, loop)
 		}
 
+		callcnt++
+
 	}
+
+	if options.Stats {
+		stat := fmt.Sprintf("\n( STATS: %d events", count)
+		if callcnt > 1 {
+			stat += fmt.Sprintf(" | %d aws calls", callcnt)
+		} else {
+			stat += fmt.Sprintf(" | %d aws call", callcnt)
+		}
+		if streamCnt > 0 {
+			stat += fmt.Sprintf(" | %d streams", streamCnt)
+		}
+		stat += fmt.Sprintf(" | %dms avg ingestion )\n", (tdiff / count))
+		fmt.Print(stat)
+	}
+
 }

@@ -27,5 +27,6 @@ type Options struct {
 	Refresh    int
 	Cache      bool
 	CacheDir   string
+	Stats      bool
 	Debug      bool
 }

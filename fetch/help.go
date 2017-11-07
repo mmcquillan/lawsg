@@ -73,6 +73,7 @@ func Help(options config.Options) {
 		fmt.Println("     --refresh    Tail Refresh interval in seconds [default: 5]")
 		fmt.Println("     --cache      Enable local cache")
 		fmt.Println("     --cachedir   Directory for the local cache")
+		fmt.Println("     --stats      Display Stats from request")
 		fmt.Println("     --debug      Debug of Output")
 		fmt.Println("")
 	}
@@ -103,6 +104,7 @@ func Help(options config.Options) {
 		fmt.Println("  LAWSG_REFRESH      Tail Refresh interval in seconds [default: 5]")
 		fmt.Println("  LAWSG_CACHE        Enable local cache")
 		fmt.Println("  LAWSG_CACHE_DIR    Directory for the local cache")
+		fmt.Println("  LAWSG_STATS        Display Stats from request")
 		fmt.Println("  LAWSG_DEBUG        Debug of Output")
 		fmt.Println("")
 	}

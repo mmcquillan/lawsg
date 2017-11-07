@@ -26,7 +26,7 @@ func Streams(options config.Options) {
 }
 
 // StreamLength - Get the longest number of characters for a stream
-func StreamLength(options config.Options) (length int) {
+func StreamLength(options config.Options) (length int, count int) {
 	streams := getStreams(options)
 	length = 0
 	for _, s := range streams {
@@ -35,7 +35,7 @@ func StreamLength(options config.Options) (length int) {
 			length = l
 		}
 	}
-	return length
+	return length, len(streams)
 }
 
 func getStreams(options config.Options) (streams []string) {

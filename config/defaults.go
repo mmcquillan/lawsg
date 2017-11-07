@@ -30,5 +30,6 @@ func Defaults(options *Options) {
 	options.Refresh = 5
 	options.Cache = false
 	options.CacheDir = "/tmp/.lawsg"
+	options.Stats = false
 	options.Debug = false
 }

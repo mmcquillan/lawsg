@@ -48,6 +48,13 @@ func Validate(options *Options) {
 	// if
 	if options.Cache && options.CacheDir == "" {
 		fmt.Println("ERROR: Cannot set Cache without a CacheDir")
+		os.Exit(1)
+	}
+
+	// don't stat while tailing
+	if options.Stats && options.Tail {
+		fmt.Println("ERROR: Can't Stat while Tailing logs")
+		os.Exit(1)
 	}
 
 	// debug out the options
