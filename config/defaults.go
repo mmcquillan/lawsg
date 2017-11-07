@@ -28,5 +28,7 @@ func Defaults(options *Options) {
 	options.Yellow = ""
 	options.Red = ""
 	options.Refresh = 5
+	options.Cache = false
+	options.CacheDir = "/tmp/.lawsg"
 	options.Debug = false
 }

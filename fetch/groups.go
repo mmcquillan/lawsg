@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
 	"github.com/fatih/color"
+	"github.com/mmcquillan/lawsg/cache"
 	"github.com/mmcquillan/lawsg/config"
 )
 
@@ -17,32 +18,38 @@ func Groups(options config.Options) {
 	count := block
 	nextToken := ""
 	var groups []string
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("ERROR: Cannot create an AWS session ", err)
-		os.Exit(1)
+	cacheExists := false
+	if options.Cache {
+		groups, cacheExists = cache.ReadGroups(options)
 	}
-	svc := cloudwatchlogs.New(sess)
-	for count >= block {
-		params := &cloudwatchlogs.DescribeLogGroupsInput{
-			Limit: aws.Int64(int64(block)),
-		}
-		if nextToken != "" {
-			params.NextToken = aws.String(nextToken)
-		}
-		resp, err := svc.DescribeLogGroups(params)
+	if !cacheExists {
+		sess, err := session.NewSession()
 		if err != nil {
-			fmt.Println("ERROR: Cannot make AWS request ", err)
+			fmt.Println("ERROR: Cannot create an AWS session ", err)
 			os.Exit(1)
 		}
-		count = len(resp.LogGroups)
-		groupList := make([]string, count, count)
-		for i, logGroup := range resp.LogGroups {
-			groupList[i] = *logGroup.LogGroupName
-		}
-		groups = append(groups, groupList...)
-		if count >= block {
-			nextToken = *resp.NextToken
+		svc := cloudwatchlogs.New(sess)
+		for count >= block {
+			params := &cloudwatchlogs.DescribeLogGroupsInput{
+				Limit: aws.Int64(int64(block)),
+			}
+			if nextToken != "" {
+				params.NextToken = aws.String(nextToken)
+			}
+			resp, err := svc.DescribeLogGroups(params)
+			if err != nil {
+				fmt.Println("ERROR: Cannot make AWS request ", err)
+				os.Exit(1)
+			}
+			count = len(resp.LogGroups)
+			groupList := make([]string, count, count)
+			for i, logGroup := range resp.LogGroups {
+				groupList[i] = *logGroup.LogGroupName
+			}
+			groups = append(groups, groupList...)
+			if count >= block {
+				nextToken = *resp.NextToken
+			}
 		}
 	}
 	sort.Strings(groups)
@@ -52,5 +59,8 @@ func Groups(options config.Options) {
 		} else {
 			color.Green("%s\n", group)
 		}
+	}
+	if options.Cache {
+		cache.WriteGroups(groups, options)
 	}
 }

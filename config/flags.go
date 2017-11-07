@@ -40,6 +40,8 @@ func Flags(options *Options) {
 	f.StringVar(&options.Yellow, "yellow", options.Yellow, "")
 	f.StringVar(&options.Red, "red", options.Red, "")
 	f.IntVar(&options.Refresh, "refresh", options.Refresh, "")
+	f.BoolVar(&options.Cache, "cache", options.Cache, "")
+	f.StringVar(&options.CacheDir, "cachedir", options.CacheDir, "")
 	f.BoolVar(&options.Debug, "debug", options.Debug, "")
 	f.SetOutput(ioutil.Discard)
 	err := f.Parse(os.Args)

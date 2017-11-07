@@ -25,5 +25,7 @@ type Options struct {
 	Yellow     string
 	Red        string
 	Refresh    int
+	Cache      bool
+	CacheDir   string
 	Debug      bool
 }

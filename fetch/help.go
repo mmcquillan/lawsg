@@ -35,8 +35,6 @@ func Help(options config.Options) {
 
 	if util.Member(options.Group, "filter,less,more") {
 		fmt.Println("FILTER OPTIONS:")
-		fmt.Println("  -c --command    Command to run groups, streams, get, help (or first argument)")
-		fmt.Println("  -g --group      Group for the command (or second argument)")
 		fmt.Println("  -f --filter     Coudwatch Filter for Event Logs")
 		fmt.Println("  -m --stream     Comma delimited list of Streams")
 		fmt.Println("  -s --starttime  Start Time for the Event Logs [default: 10 min before now]")
@@ -69,8 +67,12 @@ func Help(options config.Options) {
 
 	if util.Member(options.Group, "advanced,more") {
 		fmt.Println("ADVANCED OPTIONS:")
+		fmt.Println("  -c --command    Command to run groups, streams, get, help (or first argument)")
+		fmt.Println("  -g --group      Group for the command (or second argument)")
 		fmt.Println("     --chunk      Chunk size for retrieving Event Logs [default: 10000]")
 		fmt.Println("     --refresh    Tail Refresh interval in seconds [default: 5]")
+		fmt.Println("     --cache      Enable local cache")
+		fmt.Println("     --cachedir   Directory for the local cache")
 		fmt.Println("     --debug      Debug of Output")
 		fmt.Println("")
 	}
@@ -99,6 +101,8 @@ func Help(options config.Options) {
 		fmt.Println("  LAWSG_RED          Comma delimited Words to highlight Red")
 		fmt.Println("  LAWSG_CHUNK        Chunk size for retrieving Event Logs [default: 10000]")
 		fmt.Println("  LAWSG_REFRESH      Tail Refresh interval in seconds [default: 5]")
+		fmt.Println("  LAWSG_CACHE        Enable local cache")
+		fmt.Println("  LAWSG_CACHE_DIR    Directory for the local cache")
 		fmt.Println("  LAWSG_DEBUG        Debug of Output")
 		fmt.Println("")
 	}

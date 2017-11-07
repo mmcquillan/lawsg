@@ -8,8 +8,6 @@ USAGE:
   lawsg get <group name> [options]
 
 FILTER OPTIONS:
-  -c --command    Command to run groups, streams, get, help (or first argument)
-  -g --group      Group for the command (or second argument)
   -f --filter     Coudwatch Filter for Event Logs
   -m --stream     Comma delimited list of Streams
   -s --starttime  Start Time for the Event Logs [default: 10 min before now]
@@ -32,8 +30,12 @@ DISPLAY OPTIONS:
      --red        Comma delimited Words to highlight Red
 
 ADVANCED OPTIONS:
+  -c --command    Command to run groups, streams, get, help (or first argument)
+  -g --group      Group for the command (or second argument)
      --chunk      Chunk size for retrieving Event Logs [default: 10000]
      --refresh    Tail Refresh interval in seconds [default: 5]
+     --cache      Enable local cache
+     --cachedir   Directory for the local cache
      --debug      Debug of Output
 
 ENVIRONMENT VARIABLES:
@@ -59,6 +61,8 @@ ENVIRONMENT VARIABLES:
   LAWSG_RED          Comma delimited Words to highlight Red
   LAWSG_CHUNK        Chunk size for retrieving Event Logs [default: 10000]
   LAWSG_REFRESH      Tail Refresh interval in seconds [default: 5]
+  LAWSG_CACHE        Enable local cache
+  LAWSG_CACHE_DIR    Directory for the local cache
   LAWSG_DEBUG        Debug of Output
 
 DATETIME EXAMPLES:

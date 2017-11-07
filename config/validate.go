@@ -45,6 +45,11 @@ func Validate(options *Options) {
 		os.Exit(1)
 	}
 
+	// if
+	if options.Cache && options.CacheDir == "" {
+		fmt.Println("ERROR: Cannot set Cache without a CacheDir")
+	}
+
 	// debug out the options
 	if options.Debug {
 		fmt.Printf("\n==> INPUT: %#v\n", *options)
