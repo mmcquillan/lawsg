@@ -108,8 +108,11 @@ func Logs(options config.Options) {
 
 			// handle no stream
 			if !options.NoStream {
-				s := len(*event.LogStreamName)
-				msg += color.CyanString(*event.LogStreamName) + strings.Repeat(" ", streamLen-s+1)
+				s := streamLen - len(*event.LogStreamName) + 1
+				if s < 1 {
+					s = 1
+				}
+				msg += color.CyanString(*event.LogStreamName) + strings.Repeat(" ", s)
 			}
 
 			// handle date format
