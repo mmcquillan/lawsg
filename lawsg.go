@@ -9,9 +9,10 @@ func main() {
 	config.Aws()
 	var options config.Options
 	config.Defaults(&options)
+	config.Commands(&options)
+	config.Saved(&options)
 	config.EnvVars(&options)
 	config.Flags(&options)
-	config.Commands(&options)
 	config.Validate(&options)
 	switch options.Command {
 	case "groups":

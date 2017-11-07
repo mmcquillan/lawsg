@@ -1,6 +1,9 @@
 package config
 
 import (
+	"os"
+
+	"github.com/mitchellh/go-homedir"
 	"github.com/mmcquillan/lawsg/util"
 )
 
@@ -29,7 +32,11 @@ func Defaults(options *Options) {
 	options.Red = ""
 	options.Refresh = 5
 	options.Cache = false
-	options.CacheDir = "/tmp/.lawsg"
+	home, err := homedir.Dir()
+	if err != nil {
+		home = os.TempDir()
+	}
+	options.CacheDir = util.MakePath(home, ".lawsg/cache")
 	options.Stats = false
 	options.Debug = false
 }

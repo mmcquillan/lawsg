@@ -41,6 +41,15 @@ ADVANCED OPTIONS:
      --stats      Display Stats from request
      --debug      Debug of Output
 
+SAVED CONFIG:
+  Display options can be saved in a config file for each group (or global)
+  Save to: ~/.lawsg/config.json
+  Example:
+  {
+    "global": {"nogroup": true, , "dateformat": "yyyyMMdd-H:mm:ss"},
+    "/var/log/myapp.log": {"yellow": "[WARN]", "red": "[ERR]"}
+  }
+
 ENVIRONMENT VARIABLES:
   LAWSG_COMMAND      Command to run groups, streams, get, help (or first argument)
   LAWSG_GROUP        Group for the command (or second argument)

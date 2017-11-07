@@ -30,3 +30,5 @@ type Options struct {
 	Stats      bool
 	Debug      bool
 }
+
+type SavedOptions map[string]Options

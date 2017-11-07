@@ -199,6 +199,12 @@
 			"revisionTime": "2017-09-26T11:14:11Z"
 		},
 		{
+			"checksumSHA1": "V/quM7+em2ByJbWBLOsEwnY3j/Q=",
+			"path": "github.com/mitchellh/go-homedir",
+			"revision": "b8bc1bf767474819792c23f32d8286a45736f1c6",
+			"revisionTime": "2016-12-03T19:45:07Z"
+		},
+		{
 			"checksumSHA1": "E7kEWH63wmFClXv+WXY4mAVR8ks=",
 			"path": "github.com/mmcquillan/joda",
 			"revision": "0e768de2f7ce78cc690fbec000e4bd6de64386d2",

@@ -82,6 +82,18 @@ func Help(options config.Options) {
 		fmt.Println("")
 	}
 
+	if util.Member(options.Group, "saved,config,more,docs") {
+		fmt.Println("SAVED CONFIG:")
+		fmt.Println("  Display options can be saved in a config file for each group (or global)")
+		fmt.Println("  Save to: ~/.lawsg/config.json")
+		fmt.Println("  Example:")
+		fmt.Println("  {")
+		fmt.Println("    \"global\": {\"nogroup\": true, , \"dateformat\": \"yyyyMMdd-H:mm:ss\"},")
+		fmt.Println("    \"/var/log/myapp.log\": {\"yellow\": \"[WARN]\", \"red\": \"[ERR]\"}")
+		fmt.Println("  }")
+		fmt.Println("")
+	}
+
 	if util.Member(options.Group, "env,environment,more,docs") {
 		fmt.Println("ENVIRONMENT VARIABLES:")
 		fmt.Println("  LAWSG_COMMAND      Command to run groups, streams, get, help (or first argument)")
