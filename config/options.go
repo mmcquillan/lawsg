@@ -3,32 +3,41 @@ package config
 import ()
 
 type Options struct {
-	Command    string
-	Group      string
-	Filter     string
-	Stream     string
-	StartTime  int64
-	EndTime    int64
-	Number     int64
-	Chunk      int64
-	Tail       bool
-	TimeZone   bool
-	Spacing    bool
-	NoGroup    bool
-	NoStream   bool
-	NoTime     bool
-	NoColor    bool
-	NoWrap     bool
-	TrimLeft   int
-	DateFormat string
-	Green      string
-	Yellow     string
-	Red        string
-	Refresh    int
-	Cache      bool
-	CacheDir   string
-	Stats      bool
-	Debug      bool
+
+	// filter options
+	Filter    string
+	Stream    string
+	StartTime int64
+	EndTime   int64
+	Number    int64
+	Chunk     int64
+	Tail      bool
+
+	// display options
+	TimeZone     bool   `json:"time_zone"`
+	Spacing      bool   `json:"spacing"`
+	NoGroup      bool   `json:"no_group"`
+	NoStream     bool   `json:"no_stream"`
+	NoTime       bool   `json:"no_time"`
+	NoColor      bool   `json:"no_color"`
+	NoWrap       bool   `json:"no_wrap"`
+	StreamLTrim  int    `json:"stream_ltrim"`
+	StreamRTrim  int    `json:"stream_rtrim"`
+	MessageLTrim int    `json:"message_ltrim"`
+	MessageRTrim int    `json:"message_rtrim"`
+	DateFormat   string `json:"date_format"`
+	Green        string `json:"green"`
+	Yellow       string `json:"yellow"`
+	Red          string `json:"red"`
+
+	// advanced options
+	Command  string
+	Group    string
+	Refresh  int
+	Cache    bool
+	CacheDir string
+	Stats    bool
+	Debug    bool
 }
 
 type SavedOptions map[string]Options

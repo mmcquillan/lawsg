@@ -25,7 +25,10 @@ func Defaults(options *Options) {
 	options.NoTime = false
 	options.NoColor = false
 	options.NoWrap = false
-	options.TrimLeft = 0
+	options.StreamLTrim = 0
+	options.StreamRTrim = 0
+	options.MessageLTrim = 0
+	options.MessageRTrim = 0
 	options.DateFormat = ""
 	options.Green = ""
 	options.Yellow = ""

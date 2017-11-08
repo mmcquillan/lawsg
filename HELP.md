@@ -10,73 +10,95 @@ USAGE:
   lawsg get <group name> [options]
 
 FILTER OPTIONS:
-  -f --filter     Coudwatch Filter for Event Logs
-  -m --stream     Comma delimited list of Streams
-  -s --starttime  Start Time for the Event Logs [default: 10 min before now]
-  -e --endtime    End Time for the Event Logs [default: now]
-  -n --number     Number of Log Events to show
-  -t --tail       Active tailing of Event Logs (experimental)
+  -f --filter         Coudwatch Filter for Event Logs
+  -m --stream         Comma delimited list of Streams
+  -s --starttime      Start Time for the Event Logs [default: 10 min before now]
+  -e --endtime        End Time for the Event Logs [default: now]
+  -n --number         Number of Log Events to show
+  -t --tail           Active tailing of Event Logs (experimental)
 
 DISPLAY OPTIONS:
-     --tz         Convert Event Log display to local time
-     --spacing    Adds spacing between Log Events
-     --ng         Display No Group column
-     --ns         Display No Stream column
-     --nt         Display No Time column
-     --nc         Display No Color
-     --nw         Display No Wrapping of lines (truncates)
-     --trimleft   Trims Left side of Event Message
-     --dateformat The Date Format to use for display
-     --green      Comma delimited Words to highlight Green
-     --yellow     Comma delimited Words to highlight Yellow
-     --red        Comma delimited Words to highlight Red
+     --tz             Convert Event Log display to local time
+     --spacing        Adds spacing between Log Events
+     --ng             Display No Group column
+     --ns             Display No Stream column
+     --nt             Display No Time column
+     --nc             Display No Color
+     --nw             Display No Wrapping of lines (truncates)
+     --stream-ltrim   Trims Left side of Stream Name
+     --stream-rtrim   Trims Right side of Stream Name
+     --message-ltrim  Trims Left side of Event Message
+     --message-rtrim  Trims Right side of Event Message
+     --green          Comma delimited Words to highlight Green
+     --yellow         Comma delimited Words to highlight Yellow
+     --red            Comma delimited Words to highlight Red
 
 ADVANCED OPTIONS:
-  -c --command    Command to run groups, streams, get, help (or first argument)
-  -g --group      Group for the command (or second argument)
-     --chunk      Chunk size for retrieving Event Logs [default: 10000]
-     --refresh    Tail Refresh interval in seconds [default: 5]
-     --cache      Enable local cache
-     --cachedir   Directory for the local cache
-     --stats      Display Stats from request
-     --debug      Debug of Output
+  -c --command        Command to run groups, streams, get, help (or first argument)
+  -g --group          Group for the command (or second argument)
+     --chunk          Chunk size for retrieving Event Logs [default: 10000]
+     --refresh        Tail Refresh interval in seconds [default: 5]
+     --cache          Enable local cache
+     --cachedir       Directory for the local cache
+     --stats          Display Stats from request
+     --debug          Debug of Output
 
 SAVED CONFIG:
   Display options can be saved in a config file for each group (or global)
   Save to: ~/.lawsg/config.json
   Example:
-  {
-    "global": {"nogroup": true, , "dateformat": "yyyyMMdd-H:mm:ss"},
-    "/var/log/myapp.log": {"yellow": "[WARN]", "red": "[ERR]"}
-  }
+    {
+      "global": {"no_group": true, , "date_format": "yyyyMMdd-H:mm:ss"},
+      "/var/log/myapp.log": {"yellow": "[WARN]", "red": "[ERR]"}
+    }
+  Fields:
+    time_zone         bool
+    spacing           bool
+    no_group          bool
+    no_strean         bool
+    no_time           bool
+    no_color          bool
+    no_wrap           bool
+    stream_ltrim      int
+    stream_rtrim      int
+    message_ltrim     int
+    message_rtrim     int
+    date_format       string
+    green             string
+    yellow            string
+    red               string
 
 ENVIRONMENT VARIABLES:
-  LAWSG_COMMAND      Command to run groups, streams, get, help (or first argument)
-  LAWSG_GROUP        Group for the command (or second argument)
-  LAWSG_FILTER       Coudwatch Filter for Event Logs
-  LAWSG_STREAM       Comma delimited list of Streams
-  LAWSG_START_TIME   Start Time for the Event Logs [default: 10 min before now]
-  LAWSG_END_TIME     End Time for the Event Logs [default: now]
-  LAWSG_NUMBER       Number of Log Events to show
-  LAWSG_TAIL         Active tailing of Event Logs (experimental)
-  LAWSG_TIMEZONE     Convert Event Log display to local time
-  LAWSG_SPACING      Adds spacing between Log Events
-  LAWSG_NO_GROUP     Display No Group column
-  LAWSG_NO_STREAM    Display No Stream column
-  LAWSG_NO_TIME      Display No Time column
-  LAWSG_NO_COLOR     Display No Color
-  LAWSG_NO_WRAP      Display No Wrapping of lines (truncates)
-  LAWSG_TRIM_LEFT    Trims Left side of Event Message
-  LAWSG_DATE_FORMAT  The Date Format to use for display
-  LAWSG_GREEN        Comma delimited Words to highlight Green
-  LAWSG_YELLOW       Comma delimited Words to highlight Yellow
-  LAWSG_RED          Comma delimited Words to highlight Red
-  LAWSG_CHUNK        Chunk size for retrieving Event Logs [default: 10000]
-  LAWSG_REFRESH      Tail Refresh interval in seconds [default: 5]
-  LAWSG_CACHE        Enable local cache
-  LAWSG_CACHE_DIR    Directory for the local cache
-  LAWSG_STATS        Display Stats from request
-  LAWSG_DEBUG        Debug of Output
+  LAWSG_FILTER         Coudwatch Filter for Event Logs
+  LAWSG_STREAM         Comma delimited list of Streams
+  LAWSG_START_TIME     Start Time for the Event Logs [default: 10 min before now]
+  LAWSG_END_TIME       End Time for the Event Logs [default: now]
+  LAWSG_NUMBER         Number of Log Events to show
+  LAWSG_TAIL           Active tailing of Event Logs (experimental)
+  LAWSG_TIMEZONE       Convert Event Log display to local time
+  LAWSG_SPACING        Adds spacing between Log Events
+  LAWSG_NO_GROUP       Display No Group column
+  LAWSG_NO_STREAM      Display No Stream column
+  LAWSG_NO_TIME        Display No Time column
+  LAWSG_NO_COLOR       Display No Color
+  LAWSG_NO_WRAP        Display No Wrapping of lines (truncates)
+  LAWSG_STREAM_LTRIM   Trims Left side of Stream Name
+  LAWSG_STREAM_RTRIM   Trims Right side of Stream Name
+  LAWSG_MESSAGE_LTRIM  Trims Left side of Event Message
+  LAWSG_MESSAGE_RTRIM  Trims Right side of Event Message
+  LAWSG_TRIM_LEFT      Trims Left side of Event Message
+  LAWSG_DATE_FORMAT    The Date Format to use for display
+  LAWSG_GREEN          Comma delimited Words to highlight Green
+  LAWSG_YELLOW         Comma delimited Words to highlight Yellow
+  LAWSG_RED            Comma delimited Words to highlight Red
+  LAWSG_COMMAND        Command to run groups, streams, get, help (or first argument)
+  LAWSG_GROUP          Group for the command (or second argument)
+  LAWSG_CHUNK          Chunk size for retrieving Event Logs [default: 10000]
+  LAWSG_REFRESH        Tail Refresh interval in seconds [default: 5]
+  LAWSG_CACHE          Enable local cache
+  LAWSG_CACHE_DIR      Directory for the local cache
+  LAWSG_STATS          Display Stats from request
+  LAWSG_DEBUG          Debug of Output
 
 DATETIME EXAMPLES:
   'now' 'n' current time

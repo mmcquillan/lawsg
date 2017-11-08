@@ -112,7 +112,16 @@ func Logs(options config.Options) {
 				if s < 1 {
 					s = 1
 				}
-				msg += color.CyanString(*event.LogStreamName) + strings.Repeat(" ", s)
+				sm := *event.LogStreamName + strings.Repeat(" ", s)
+				if options.StreamLTrim > 0 || options.StreamRTrim > 0 {
+					if options.StreamLTrim > 0 && options.StreamLTrim < len(sm) {
+						sm = sm[options.StreamLTrim:]
+					}
+					if options.StreamRTrim > 0 && options.StreamRTrim < len(sm) {
+						sm = sm[0 : len(sm)-options.StreamRTrim]
+					}
+				}
+				msg += color.CyanString(sm)
 			}
 
 			// handle date format
@@ -132,11 +141,15 @@ func Logs(options config.Options) {
 			}
 
 			// add message
-			if options.TrimLeft > 0 {
+			if options.MessageLTrim > 0 || options.MessageRTrim > 0 {
 				m := *event.Message
-				if len(m) > options.TrimLeft {
-					msg += m[options.TrimLeft:]
+				if options.MessageLTrim > 0 && options.MessageLTrim < len(m) {
+					m = m[options.MessageLTrim:]
 				}
+				if options.MessageRTrim > 0 && options.MessageRTrim < len(m) {
+					m = m[0 : len(m)-options.MessageRTrim]
+				}
+				msg += m
 			} else {
 				msg += *event.Message
 			}

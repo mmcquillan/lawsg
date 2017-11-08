@@ -39,13 +39,31 @@ func Validate(options *Options) {
 		os.Exit(1)
 	}
 
+	// validate trims
+	if options.StreamLTrim < 0 {
+		fmt.Println("ERROR: Cannot specify a negative value for Stream LTrim")
+		os.Exit(1)
+	}
+	if options.StreamRTrim < 0 {
+		fmt.Println("ERROR: Cannot specify a negative value for Stream RTrim")
+		os.Exit(1)
+	}
+	if options.MessageLTrim < 0 {
+		fmt.Println("ERROR: Cannot specify a negative value for Message LTrim")
+		os.Exit(1)
+	}
+	if options.MessageRTrim < 0 {
+		fmt.Println("ERROR: Cannot specify a negative value for Message RTrim")
+		os.Exit(1)
+	}
+
 	// validate number and tail
 	if options.Tail && options.Number > 0 {
 		fmt.Println("ERROR: Cannot tail and limit the number of Log Events")
 		os.Exit(1)
 	}
 
-	// if
+	// validate cache dir
 	if options.Cache && options.CacheDir == "" {
 		fmt.Println("ERROR: Cannot set Cache without a CacheDir")
 		os.Exit(1)
