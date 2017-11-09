@@ -25,19 +25,6 @@ func Streams(options config.Options) {
 	}
 }
 
-// StreamLength - Get the longest number of characters for a stream
-func StreamLength(options config.Options) (length int, count int) {
-	streams := getStreams(options)
-	length = 0
-	for _, s := range streams {
-		l := len(s)
-		if l > length {
-			length = l
-		}
-	}
-	return length, len(streams)
-}
-
 func getStreams(options config.Options) (streams []string) {
 	block := 50
 	count := block
@@ -64,6 +51,7 @@ func getStreams(options config.Options) (streams []string) {
 		resp, err := svc.DescribeLogStreams(params)
 		if err != nil {
 			fmt.Println("ERROR: Cannot make AWS request ", err)
+			MatchGroups(options)
 			os.Exit(1)
 		}
 		for _, s := range resp.LogStreams {

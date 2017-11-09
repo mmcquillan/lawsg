@@ -25,6 +25,7 @@ func Logs(options config.Options) {
 	count := int64(0)
 	tdiff := int64(0)
 	callcnt := 0
+	streamLen := 0
 	streamCnt := 0
 	loop := true
 	nextToken := ""
@@ -37,12 +38,6 @@ func Logs(options config.Options) {
 		os.Exit(1)
 	}
 	svc := cloudwatchlogs.New(sess)
-
-	// get stream length
-	streamLen := 0
-	if !options.NoStream {
-		streamLen, streamCnt = StreamLength(options)
-	}
 
 	// log pull loop
 	for loop {
@@ -92,7 +87,16 @@ func Logs(options config.Options) {
 		resp, err := svc.FilterLogEvents(params)
 		if err != nil {
 			fmt.Println("ERROR: Cannot make AWS request ", err)
+			MatchGroups(options)
 			os.Exit(1)
+		}
+
+		// get stream length
+		streamCnt = len(resp.SearchedLogStreams)
+		for _, stream := range resp.SearchedLogStreams {
+			if len(*stream.LogStreamName) > streamLen {
+				streamLen = len(*stream.LogStreamName)
+			}
 		}
 
 		// loop over events
@@ -254,16 +258,18 @@ func Logs(options config.Options) {
 	}
 
 	if options.Stats {
-		stat := fmt.Sprintf("\n( STATS: %d events", count)
+		stat := fmt.Sprintf("\n[ STATS: %d events", count)
 		if callcnt > 1 {
 			stat += fmt.Sprintf(" | %d aws calls", callcnt)
 		} else {
 			stat += fmt.Sprintf(" | %d aws call", callcnt)
 		}
-		if streamCnt > 0 {
+		if streamCnt > 1 {
 			stat += fmt.Sprintf(" | %d streams", streamCnt)
+		} else {
+			stat += fmt.Sprintf(" | %d stream", streamCnt)
 		}
-		stat += fmt.Sprintf(" | %dms avg ingestion )\n", (tdiff / count))
+		stat += fmt.Sprintf(" | %dms avg ingestion ]\n", (tdiff / count))
 		fmt.Print(stat)
 	}
 

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"sort"
-	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -12,9 +11,35 @@ import (
 	"github.com/fatih/color"
 	"github.com/mmcquillan/lawsg/cache"
 	"github.com/mmcquillan/lawsg/config"
+	"github.com/schollz/closestmatch"
 )
 
 func Groups(options config.Options) {
+	groups := getGroups(options)
+	for _, g := range groups {
+		if options.NoColor {
+			fmt.Printf("%s\n", g)
+		} else {
+			color.Green("%s\n", g)
+		}
+	}
+}
+
+func MatchGroups(options config.Options) {
+	groups := getGroups(options)
+	bagSizes := []int{2, 3, 4}
+	cm := closestmatch.New(groups, bagSizes)
+	matches := cm.ClosestN(options.Group, 3)
+	if len(matches) > 0 {
+		fmt.Println("\nDid you mean...")
+		for _, group := range matches {
+			fmt.Printf("- %s\n", group)
+		}
+		fmt.Println("")
+	}
+}
+
+func getGroups(options config.Options) []string {
 	block := 50
 	count := block
 	nextToken := ""
@@ -54,16 +79,8 @@ func Groups(options config.Options) {
 		}
 	}
 	sort.Strings(groups)
-	for _, group := range groups {
-		if options.Filter == "" || strings.Contains(group, options.Filter) {
-			if options.NoColor {
-				fmt.Printf("%s\n", group)
-			} else {
-				color.Green("%s\n", group)
-			}
-		}
-	}
 	if options.Cache {
 		cache.WriteGroups(groups, options.CacheDir)
 	}
+	return groups
 }
