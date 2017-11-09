@@ -10,7 +10,7 @@ USAGE:
   lawsg get <group name> [options]
 
 FILTER OPTIONS:
-  -f --filter         Coudwatch Filter for Event Logs
+  -f --filter         Cloudwatch Filter for Event Logs
   -m --stream         Comma delimited list of Streams
   -s --starttime      Start Time for the Event Logs [default: 10 min before now]
   -e --endtime        End Time for the Event Logs [default: now]
@@ -43,6 +43,12 @@ ADVANCED OPTIONS:
      --stats          Display Stats from request
      --debug          Debug of Output
 
+CLOUDWATCH FILTER EXAMPLES:
+  '"toy"'           Matches toy, toys or toyota
+  '"toy" -"fun"'    Matches toy but not fun
+  '"eggs ham"'      Matches multiple words 'green eggs and ham'
+                    More: https://goo.gl/eHztRU
+
 SAVED CONFIG:
   Display options can be saved in a config file for each group (or global)
   Save to: ~/.lawsg/config.json
@@ -69,7 +75,7 @@ SAVED CONFIG:
     red               string
 
 ENVIRONMENT VARIABLES:
-  LAWSG_FILTER         Coudwatch Filter for Event Logs
+  LAWSG_FILTER         Cloudwatch Filter for Event Logs
   LAWSG_STREAM         Comma delimited list of Streams
   LAWSG_START_TIME     Start Time for the Event Logs [default: 10 min before now]
   LAWSG_END_TIME       End Time for the Event Logs [default: now]
