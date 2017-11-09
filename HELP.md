@@ -44,10 +44,10 @@ ADVANCED OPTIONS:
      --debug          Debug of Output
 
 CLOUDWATCH FILTER EXAMPLES:
-  '"toy"'           Matches toy, toys or toyota
-  '"toy" -"fun"'    Matches toy but not fun
-  '"eggs ham"'      Matches multiple words 'green eggs and ham'
-                    More: https://goo.gl/eHztRU
+  ' "toy" '           Matches toy, toys or toyota
+  ' "toy" -"fun" '    Matches toy but not fun
+  ' "eggs ham" '      Matches multiple words 'green eggs and ham'
+                      More: https://goo.gl/eHztRU
 
 SAVED CONFIG:
   Display options can be saved in a config file for each group (or global)

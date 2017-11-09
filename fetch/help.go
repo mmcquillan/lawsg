@@ -87,10 +87,10 @@ func Help(options config.Options) {
 
 	if util.Member(options.Group, "cloudwatch,filter,more,docs") {
 		fmt.Println("CLOUDWATCH FILTER EXAMPLES:")
-		fmt.Println("  '\"toy\"'           Matches toy, toys or toyota")
-		fmt.Println("  '\"toy\" -\"fun\"'    Matches toy but not fun")
-		fmt.Println("  '\"eggs ham\"'      Matches multiple words 'green eggs and ham'")
-		fmt.Println("                    More: https://goo.gl/eHztRU")
+		fmt.Println("  ' \"toy\" '           Matches toy, toys or toyota")
+		fmt.Println("  ' \"toy\" -\"fun\" '    Matches toy but not fun")
+		fmt.Println("  ' \"eggs ham\" '      Matches multiple words 'green eggs and ham'")
+		fmt.Println("                      More: https://goo.gl/eHztRU")
 		fmt.Println("")
 	}
 
