@@ -10,11 +10,11 @@ import (
 func Validate(options *Options) {
 
 	// spelling
-	if options.Command == "group" {
+	if util.Member(options.Command, "group,grops,grups,grps,goups,grous,gr") {
 		fmt.Println("ERROR: Did you mean 'groups'?")
 		os.Exit(1)
 	}
-	if options.Command == "stream" {
+	if util.Member(options.Command, "stream,strams,strems,steams,streas,sreams,st") {
 		fmt.Println("ERROR: Did you mean 'streams'?")
 		os.Exit(1)
 	}
