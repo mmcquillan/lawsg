@@ -6,12 +6,11 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/mmcquillan/lawsg/config"
 	"github.com/mmcquillan/lawsg/util"
 )
 
-func ReadGroups(options config.Options) (groups []string, exists bool) {
-	gc := util.MakePath(options.CacheDir, "g")
+func ReadGroups(cacheDir string) (groups []string, exists bool) {
+	gc := util.MakePath(cacheDir, "g")
 	if !util.FileExists(gc) {
 		return groups, false
 	}
@@ -35,11 +34,11 @@ func ReadGroups(options config.Options) (groups []string, exists bool) {
 	return groups, true
 }
 
-func WriteGroups(groups []string, options config.Options) {
-	if !util.DirExists(options.CacheDir) {
-		os.MkdirAll(options.CacheDir, 0700)
+func WriteGroups(groups []string, cacheDir string) {
+	if !util.DirExists(cacheDir) {
+		os.MkdirAll(cacheDir, 0700)
 	}
-	gc := util.MakePath(options.CacheDir, "g")
+	gc := util.MakePath(cacheDir, "g")
 	if !util.FileExists(gc) {
 		jsonGroups, _ := json.Marshal(groups)
 		err := ioutil.WriteFile(gc, jsonGroups, 0644)

@@ -21,7 +21,7 @@ func Groups(options config.Options) {
 	var groups []string
 	cacheExists := false
 	if options.Cache {
-		groups, cacheExists = cache.ReadGroups(options)
+		groups, cacheExists = cache.ReadGroups(options.CacheDir)
 	}
 	if !cacheExists {
 		sess, err := session.NewSession()
@@ -64,6 +64,6 @@ func Groups(options config.Options) {
 		}
 	}
 	if options.Cache {
-		cache.WriteGroups(groups, options)
+		cache.WriteGroups(groups, options.CacheDir)
 	}
 }
