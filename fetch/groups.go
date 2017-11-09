@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"sort"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -22,6 +23,10 @@ func Groups(options config.Options) {
 		} else {
 			color.Green("%s\n", g)
 		}
+	}
+	if options.Stats {
+		stat := fmt.Sprintf("\n[ STATS: %dms exec ]\n", (time.Now().UnixNano()-options.Timer)/1000000)
+		fmt.Print(stat)
 	}
 }
 

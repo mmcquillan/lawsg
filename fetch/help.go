@@ -2,6 +2,7 @@ package fetch
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/mmcquillan/lawsg/config"
 	"github.com/mmcquillan/lawsg/util"
@@ -214,6 +215,11 @@ func Help(options config.Options) {
 
 	if util.Member(options.Group, "docs") {
 		fmt.Println("```")
+	}
+
+	if options.Stats {
+		stat := fmt.Sprintf("\n[ STATS: %dms exec ]\n", (time.Now().UnixNano()-options.Timer)/1000000)
+		fmt.Print(stat)
 	}
 
 }

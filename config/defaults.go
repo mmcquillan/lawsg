@@ -2,6 +2,7 @@ package config
 
 import (
 	"os"
+	"time"
 
 	"github.com/mitchellh/go-homedir"
 	"github.com/mmcquillan/lawsg/util"
@@ -9,15 +10,16 @@ import (
 
 // Defaults - returns the options with defaults set
 func Defaults(options *Options) {
-	options.Command = ""
-	options.Group = ""
+
+	// filter options
 	options.Filter = ""
 	options.Stream = ""
 	options.StartTime = util.ParseDate("10m ago")
 	options.EndTime = util.ParseDate("now")
 	options.Number = 0
-	options.Chunk = 10000
 	options.Tail = false
+
+	// display options
 	options.TimeZone = false
 	options.Spacing = false
 	options.NoGroup = false
@@ -33,6 +35,11 @@ func Defaults(options *Options) {
 	options.Green = ""
 	options.Yellow = ""
 	options.Red = ""
+
+	// advanced options
+	options.Command = ""
+	options.Group = ""
+	options.Chunk = 10000
 	options.Refresh = 5
 	options.Cache = false
 	home, err := homedir.Dir()
@@ -42,4 +49,8 @@ func Defaults(options *Options) {
 	options.CacheDir = util.MakePath(home, ".lawsg/cache")
 	options.Stats = false
 	options.Debug = false
+
+	// stats
+	options.Timer = time.Now().UnixNano()
+
 }

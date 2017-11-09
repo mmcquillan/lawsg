@@ -38,6 +38,9 @@ type Options struct {
 	CacheDir string
 	Stats    bool
 	Debug    bool
+
+	// stats
+	Timer int64
 }
 
 type SavedOptions map[string]Options

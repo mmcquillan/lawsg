@@ -258,18 +258,21 @@ func Logs(options config.Options) {
 	}
 
 	if options.Stats {
-		stat := fmt.Sprintf("\n[ STATS: %d events", count)
+		stat := "\n[ STATS:"
+		stat += fmt.Sprintf(" %dms exec", (time.Now().UnixNano()-options.Timer)/1000000)
 		if callcnt > 1 {
 			stat += fmt.Sprintf(" | %d aws calls", callcnt)
 		} else {
 			stat += fmt.Sprintf(" | %d aws call", callcnt)
 		}
+		stat += fmt.Sprintf(" | %d events", count)
 		if streamCnt > 1 {
 			stat += fmt.Sprintf(" | %d streams", streamCnt)
 		} else {
 			stat += fmt.Sprintf(" | %d stream", streamCnt)
 		}
-		stat += fmt.Sprintf(" | %dms avg ingestion ]\n", (tdiff / count))
+		stat += fmt.Sprintf(" | %dms avg ingestion", (tdiff / count))
+		stat += " ]\n"
 		fmt.Print(stat)
 	}
 
