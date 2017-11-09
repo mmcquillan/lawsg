@@ -84,6 +84,15 @@ func Help(options config.Options) {
 		fmt.Println("")
 	}
 
+	if util.Member(options.Group, "cloudwatch,filter,more,docs") {
+		fmt.Println("CLOUDWATCH FILTER EXAMPLES:")
+		fmt.Println("  '\"toy\"'           Matches toy, toys or toyota")
+		fmt.Println("  '\"toy\" -\"fun\"'    Matches toy but not fun")
+		fmt.Println("  '\"eggs ham\"'      Matches multiple words 'green eggs and ham'")
+		fmt.Println("                    More: https://goo.gl/eHztRU")
+		fmt.Println("")
+	}
+
 	if util.Member(options.Group, "saved,config,more,docs") {
 		fmt.Println("SAVED CONFIG:")
 		fmt.Println("  Display options can be saved in a config file for each group (or global)")
