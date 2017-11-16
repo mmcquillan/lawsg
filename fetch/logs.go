@@ -64,6 +64,9 @@ func Logs(options config.Options) {
 
 		// set the log filter
 		if options.Filter != "" {
+			if !strings.Contains(options.Filter, "\"") {
+				options.Filter = fmt.Sprintf("\"%s\"", options.Filter)
+			}
 			params.FilterPattern = aws.String(options.Filter)
 		}
 
@@ -224,17 +227,25 @@ func Logs(options config.Options) {
 		}
 
 		// evaluate next steps
-		if count >= options.Number {
+		if count >= options.Number && options.Number != 0 {
 			loop = false
 		}
 
 		// refresh next token
 		if resp.NextToken != nil {
-			if *resp.NextToken != nextToken {
+			if string(*resp.NextToken) != string(nextToken) {
+				if options.Debug {
+					fmt.Println("==> Diff Tokens")
+				}
 				nextToken = *resp.NextToken
 			} else {
+				if options.Debug {
+					fmt.Println("==> Same Tokens")
+				}
 				loop = false
 			}
+		} else {
+			loop = false
 		}
 
 		// handle tailing
