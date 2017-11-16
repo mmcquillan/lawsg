@@ -282,7 +282,9 @@ func Logs(options config.Options) {
 		} else {
 			stat += fmt.Sprintf(" | %d stream", streamCnt)
 		}
-		stat += fmt.Sprintf(" | %dms avg ingestion", (tdiff / count))
+		if count > 0 {
+			stat += fmt.Sprintf(" | %dms avg ingestion", (tdiff / count))
+		}
 		stat += " ]\n"
 		fmt.Print(stat)
 	}
