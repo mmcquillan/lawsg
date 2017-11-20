@@ -255,7 +255,7 @@ func Logs(options config.Options) {
 			}
 			time.Sleep(time.Second * time.Duration(options.Refresh))
 			options.StartTime = lastTimestamp + 1
-			options.EndTime = lastTimestamp + (int64(options.Refresh) * 1000)
+			options.EndTime = time.Now().Unix() * 1000
 			loop = true
 		}
 
