@@ -14,6 +14,10 @@ func TestTime(t *testing.T) {
 	checkTime("1w ago", t)
 	checkTime("1y ago", t)
 	checkTime("2017-11-01 12:30:45", t)
+	checkTime("2017-11-01 12:30", t)
+	checkTime("4/8/2014 22:05", t)
+	checkTime("2017/11/01 12:30:45", t)
+	checkTime("2017/11/01 12:30", t)
 }
 
 func checkTime(chk string, t *testing.T) {

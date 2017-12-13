@@ -3,10 +3,10 @@
 	"ignore": "test",
 	"package": [
 		{
-			"checksumSHA1": "sMNGYak6MM8KcTSbVRS4ADbuauM=",
+			"checksumSHA1": "1xce9L6Da+HCNCQzYPXo2GOLYAU=",
 			"path": "github.com/araddon/dateparse",
-			"revision": "ca7e753bd149dae747d76fa7d52b20b920f3a814",
-			"revisionTime": "2017-10-07T16:34:59Z"
+			"revision": "626fadf64d2a5b300fe00da84d09e25e7f19424e",
+			"revisionTime": "2017-12-11T18:59:18Z"
 		},
 		{
 			"checksumSHA1": "YhARllgSKHk/9SL4UuyM7kpXFnk=",
