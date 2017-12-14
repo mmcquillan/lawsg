@@ -49,7 +49,7 @@ CLOUDWATCH FILTER EXAMPLES:
 
 SAVED CONFIG:
   Display options can be saved in a config file for each group (or global)
-  Save to: ~/.lawsg/config.json
+  Save to: ~/.lawsg (or ~/.lawsg.json)
   Example:
     {
       "global": {"no_group": true, , "date_format": "yyyyMMdd-H:mm:ss"},

@@ -95,7 +95,7 @@ func Help(options config.Options) {
 	if util.Member(options.Group, "saved,config,more,docs") {
 		fmt.Println("SAVED CONFIG:")
 		fmt.Println("  Display options can be saved in a config file for each group (or global)")
-		fmt.Println("  Save to: ~/.lawsg/config.json")
+		fmt.Println("  Save to: ~/.lawsg (or ~/.lawsg.json)")
 		fmt.Println("  Example:")
 		fmt.Println("    {")
 		fmt.Println("      \"global\": {\"no_group\": true, , \"date_format\": \"yyyyMMdd-H:mm:ss\"},")

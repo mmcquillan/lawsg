@@ -16,8 +16,22 @@ func Saved(options *Options) {
 		if err != nil {
 			return
 		}
-		conf := util.MakePath(home, ".lawsg/config.json")
+		conf := ""
+		saveFile := false
+
+		// test .lawsg
+		conf = util.MakePath(home, ".lawsg")
 		if util.FileExists(conf) {
+			saveFile = true
+		}
+
+		// test .lawsg.json
+		conf = util.MakePath(home, ".lawsg.json")
+		if util.FileExists(conf) {
+			saveFile = true
+		}
+
+		if saveFile {
 			file, err := ioutil.ReadFile(conf)
 			if err != nil {
 				fmt.Println("WARN: Unable to read Config File - ", err)
