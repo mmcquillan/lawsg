@@ -31,13 +31,11 @@ type Options struct {
 	Red          string `json:"red"`
 
 	// advanced options
-	Command  string
-	Group    string
-	Refresh  int
-	Cache    bool
-	CacheDir string
-	Stats    bool
-	Debug    bool
+	Command string
+	Group   string
+	Refresh int
+	Stats   bool
+	Debug   bool
 
 	// stats
 	Timer int64

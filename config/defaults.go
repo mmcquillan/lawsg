@@ -1,10 +1,8 @@
 package config
 
 import (
-	"os"
 	"time"
 
-	"github.com/mitchellh/go-homedir"
 	"github.com/mmcquillan/lawsg/util"
 )
 
@@ -41,12 +39,6 @@ func Defaults(options *Options) {
 	options.Group = ""
 	options.Chunk = 10000
 	options.Refresh = 5
-	options.Cache = false
-	home, err := homedir.Dir()
-	if err != nil {
-		home = os.TempDir()
-	}
-	options.CacheDir = util.MakePath(home, ".lawsg/cache")
 	options.Stats = false
 	options.Debug = false
 

@@ -40,8 +40,6 @@ func EnvVars(options *Options) {
 	options.Group = setEnvString(options.Group, "LAWSG_GROUP")
 	options.Chunk = setEnvInt64(options.Chunk, "LAWSG_CHUNK")
 	options.Refresh = setEnvInt(options.Refresh, "LAWSG_REFRESH")
-	options.Cache = setEnvBool(options.Cache, "LAWSG_CACHE")
-	options.CacheDir = setEnvString(options.CacheDir, "LAWSG_CACHE_DIR")
 	options.Stats = setEnvBool(options.Stats, "LAWSG_STATS")
 	options.Debug = setEnvBool(options.Debug, "LAWSG_DEBUG")
 }

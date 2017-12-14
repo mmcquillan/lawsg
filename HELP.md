@@ -38,8 +38,6 @@ ADVANCED OPTIONS:
   -g --group          Group for the command (or second argument)
      --chunk          Chunk size for retrieving Event Logs [default: 10000]
      --refresh        Tail Refresh interval in seconds [default: 5]
-     --cache          Enable local cache
-     --cachedir       Directory for the local cache
      --stats          Display Stats from request
      --debug          Debug of Output
 
@@ -101,8 +99,6 @@ ENVIRONMENT VARIABLES:
   LAWSG_GROUP          Group for the command (or second argument)
   LAWSG_CHUNK          Chunk size for retrieving Event Logs [default: 10000]
   LAWSG_REFRESH        Tail Refresh interval in seconds [default: 5]
-  LAWSG_CACHE          Enable local cache
-  LAWSG_CACHE_DIR      Directory for the local cache
   LAWSG_STATS          Display Stats from request
   LAWSG_DEBUG          Debug of Output
 
