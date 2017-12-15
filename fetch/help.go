@@ -24,12 +24,7 @@ func Help(options config.Options) {
 	fmt.Println("LAWSG - The AWS Cloudwatch Logs Viewer")
 	fmt.Println("")
 
-	if util.Member(options.Group, "less") {
-		fmt.Println("  lawsg <command> <group> [options]")
-		fmt.Println("")
-	}
-
-	if util.Member(options.Group, "usage,more,docs") {
+	if util.Member(options.Group, "usage,less,more,docs") {
 		fmt.Println("USAGE:")
 		fmt.Println("  lawsg help [ more | <topic name> ]")
 		fmt.Println("  lawsg groups [options]")
@@ -49,7 +44,7 @@ func Help(options config.Options) {
 		fmt.Println("")
 	}
 
-	if util.Member(options.Group, "display,less,more,docs") {
+	if util.Member(options.Group, "display,more,docs") {
 		fmt.Println("DISPLAY OPTIONS:")
 		fmt.Println("     --tz             Convert Event Log display to local time")
 		fmt.Println("     --spacing        Adds spacing between Log Events")
