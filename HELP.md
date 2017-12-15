@@ -15,7 +15,7 @@ FILTER OPTIONS:
   -s --starttime      Start Time for the Event Logs [default: 10 min before now]
   -e --endtime        End Time for the Event Logs [default: now]
   -n --number         Number of Log Events to show
-  -t --tail           Active tailing of Event Logs (experimental)
+  -t --tail           Active tailing of Event Logs
 
 DISPLAY OPTIONS:
      --tz             Convert Event Log display to local time
@@ -78,7 +78,7 @@ ENVIRONMENT VARIABLES:
   LAWSG_START_TIME     Start Time for the Event Logs [default: 10 min before now]
   LAWSG_END_TIME       End Time for the Event Logs [default: now]
   LAWSG_NUMBER         Number of Log Events to show
-  LAWSG_TAIL           Active tailing of Event Logs (experimental)
+  LAWSG_TAIL           Active tailing of Event Logs
   LAWSG_TIMEZONE       Convert Event Log display to local time
   LAWSG_SPACING        Adds spacing between Log Events
   LAWSG_NO_GROUP       Display No Group column
