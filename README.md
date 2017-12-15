@@ -8,8 +8,8 @@ Why another cloudwatch CLI?
 
 
 Get Started:
-1. Install Go https://golang.org/
-2. Install app by running: `go get github.com/mmcquillan/lawsg`
+1. Install on Mac via brew: `brew install mmcquillan/tools/lawsg`
+2. Alternatively compile via go: `go get github.com/mmcquillan/lawsg`
 3. Ensure you set your AWS Environment Variables:
     - `AWS_REGION`
     - `AWS_ACCESS_KEY_ID`
