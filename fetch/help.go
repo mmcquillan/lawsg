@@ -9,7 +9,7 @@ import (
 )
 
 // Help - display the help
-func Help(options config.Options) {
+func Help(options config.Options, version string) {
 
 	if options.Group == "" {
 		options.Group = "less"
@@ -30,6 +30,7 @@ func Help(options config.Options) {
 		fmt.Println("  lawsg groups [options]")
 		fmt.Println("  lawsg streams <group name> [options]")
 		fmt.Println("  lawsg get <group name> [options]")
+		fmt.Println("  lawsg version")
 		fmt.Println("")
 	}
 
@@ -198,6 +199,7 @@ func Help(options config.Options) {
 
 	if util.Member(options.Group, "about,more,docs") {
 		fmt.Println("ABOUT:")
+		fmt.Println("  lawsg", version)
 		fmt.Println("  Free to Use and Contribute via the MIT License")
 		fmt.Println("  Maintained by Matt McQuillan")
 		fmt.Println("  https://github.com/mmcquillan/lawsg")

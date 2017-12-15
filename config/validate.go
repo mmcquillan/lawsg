@@ -20,7 +20,7 @@ func Validate(options *Options) {
 	}
 
 	// validate command
-	if !util.Member(options.Command, "get,groups,streams,help") {
+	if !util.Member(options.Command, "get,groups,streams,version,help") {
 		options.Command = "help"
 		options.Group = ""
 	}

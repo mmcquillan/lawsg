@@ -5,6 +5,8 @@ import (
 	"github.com/mmcquillan/lawsg/fetch"
 )
 
+var version string
+
 func main() {
 	config.Aws()
 	var options config.Options
@@ -21,7 +23,9 @@ func main() {
 		fetch.Streams(options)
 	case "get":
 		fetch.Logs(options)
+	case "version":
+		fetch.Version(version)
 	default:
-		fetch.Help(options)
+		fetch.Help(options, version)
 	}
 }
