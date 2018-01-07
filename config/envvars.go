@@ -30,6 +30,7 @@ func EnvVars(options *Options) {
 	options.StreamRTrim = setEnvInt(options.StreamRTrim, "LAWSG_STREAM_RTRIM")
 	options.MessageLTrim = setEnvInt(options.MessageLTrim, "LAWSG_MESSAGE_LTRIM")
 	options.MessageRTrim = setEnvInt(options.MessageRTrim, "LAWSG_MESSAGE_RTRIM")
+	options.MultiLine = setEnvBool(options.MultiLine, "LAWSG_MULTI_LINE")
 	options.DateFormat = setEnvString(options.DateFormat, "LAWSG_DATE_FORMAT")
 	options.Green = setEnvString(options.Green, "LAWSG_GREEN")
 	options.Yellow = setEnvString(options.Yellow, "LAWSG_YELLOW")

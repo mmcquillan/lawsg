@@ -25,6 +25,7 @@ type Options struct {
 	StreamRTrim  int    `json:"stream_rtrim"`
 	MessageLTrim int    `json:"message_ltrim"`
 	MessageRTrim int    `json:"message_rtrim"`
+	MultiLine    bool   `json:"multi_line"`
 	DateFormat   string `json:"date_format"`
 	Green        string `json:"green"`
 	Yellow       string `json:"yellow"`

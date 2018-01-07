@@ -8,6 +8,7 @@ USAGE:
   lawsg groups [options]
   lawsg streams <group name> [options]
   lawsg get <group name> [options]
+  lawsg version
 
 FILTER OPTIONS:
   -f --filter         Cloudwatch Filter for Event Logs
@@ -29,6 +30,7 @@ DISPLAY OPTIONS:
      --stream-rtrim   Trims Right side of Stream Name
      --message-ltrim  Trims Left side of Event Message
      --message-rtrim  Trims Right side of Event Message
+     --multi-line     Handles multiple logs entries in one Event Message
      --green          Comma delimited Words to highlight Green
      --yellow         Comma delimited Words to highlight Yellow
      --red            Comma delimited Words to highlight Red
@@ -67,6 +69,7 @@ SAVED CONFIG:
     stream_rtrim      int
     message_ltrim     int
     message_rtrim     int
+    multi_line        bool
     date_format       string
     green             string
     yellow            string
@@ -90,7 +93,7 @@ ENVIRONMENT VARIABLES:
   LAWSG_STREAM_RTRIM   Trims Right side of Stream Name
   LAWSG_MESSAGE_LTRIM  Trims Left side of Event Message
   LAWSG_MESSAGE_RTRIM  Trims Right side of Event Message
-  LAWSG_TRIM_LEFT      Trims Left side of Event Message
+  LAWSG_MULTI_LINE     Handles multiple logs entries in one Event Message
   LAWSG_DATE_FORMAT    The Date Format to use for display
   LAWSG_GREEN          Comma delimited Words to highlight Green
   LAWSG_YELLOW         Comma delimited Words to highlight Yellow
@@ -142,6 +145,7 @@ AWS CREDENTIALS:
   AWS_SECRET_ACCESS_KEY
 
 ABOUT:
+  lawsg 
   Free to Use and Contribute via the MIT License
   Maintained by Matt McQuillan
   https://github.com/mmcquillan/lawsg

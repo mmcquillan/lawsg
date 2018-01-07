@@ -38,6 +38,7 @@ func Flags(options *Options) {
 	f.IntVar(&options.StreamRTrim, "stream-rtrim", options.StreamRTrim, "")
 	f.IntVar(&options.MessageLTrim, "message-ltrim", options.MessageLTrim, "")
 	f.IntVar(&options.MessageRTrim, "message-rtrim", options.MessageRTrim, "")
+	f.BoolVar(&options.MultiLine, "multi-line", options.MultiLine, "")
 	f.StringVar(&options.DateFormat, "dateformat", options.DateFormat, "")
 	f.StringVar(&options.Green, "green", options.Green, "")
 	f.StringVar(&options.Yellow, "yellow", options.Yellow, "")

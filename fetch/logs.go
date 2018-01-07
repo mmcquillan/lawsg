@@ -105,120 +105,130 @@ func Logs(options config.Options) {
 		// loop over events
 		for _, event := range resp.Events {
 
-			// init event
-			msg := ""
-
-			// handle no group
-			if !options.NoGroup {
-				msg += color.GreenString(options.Group) + " "
-			}
-
-			// handle no stream
-			if !options.NoStream {
-				s := streamLen - len(*event.LogStreamName) + 1
-				if s < 1 {
-					s = 1
-				}
-				sm := *event.LogStreamName + strings.Repeat(" ", s)
-				if options.StreamLTrim > 0 || options.StreamRTrim > 0 {
-					if options.StreamLTrim > 0 && options.StreamLTrim < len(sm) {
-						sm = sm[options.StreamLTrim:]
-					}
-					if options.StreamRTrim > 0 && options.StreamRTrim < len(sm) {
-						sm = sm[0 : len(sm)-options.StreamRTrim]
-					}
-				}
-				msg += color.CyanString(sm)
-			}
-
-			// handle date format
-			dateFormat := time.RFC3339
-			if options.DateFormat != "" {
-				dateFormat = joda.Format(options.DateFormat)
-			}
-
-			// handle no time and tz
-			if !options.NoTime {
-				t := time.Unix(*event.Timestamp/1000, 0)
-				if options.TimeZone {
-					msg += color.MagentaString(t.Local().Format(dateFormat)) + " "
-				} else {
-					msg += color.MagentaString(t.UTC().Format(dateFormat)) + " "
-				}
-			}
-
-			// add message
-			if options.MessageLTrim > 0 || options.MessageRTrim > 0 {
-				m := *event.Message
-				if options.MessageLTrim > 0 && options.MessageLTrim < len(m) {
-					m = m[options.MessageLTrim:]
-				}
-				if options.MessageRTrim > 0 && options.MessageRTrim < len(m) {
-					m = m[0 : len(m)-options.MessageRTrim]
-				}
-				msg += m
+			// handle multi-line
+			var messages []string
+			if options.MultiLine {
+				messages = strings.Split(*event.Message, "\n")
 			} else {
-				msg += *event.Message
+				messages = make([]string, 1, 1)
+				messages[0] = *event.Message
 			}
 
-			// handle green
-			if options.Green != "" {
-				reColor := color.New(color.BgGreen).SprintFunc()
-				for _, s := range strings.Split(options.Green, ",") {
-					msg = strings.Replace(msg, s, reColor(s), -1)
+			// loop over messages
+			for _, message := range messages {
+
+				// init event
+				msg := ""
+
+				// handle no group
+				if !options.NoGroup {
+					msg += color.GreenString(options.Group) + " "
 				}
-			}
 
-			// handle yellow
-			if options.Yellow != "" {
-				reColor := color.New(color.BgYellow).SprintFunc()
-				for _, s := range strings.Split(options.Yellow, ",") {
-					msg = strings.Replace(msg, s, reColor(s), -1)
+				// handle no stream
+				if !options.NoStream {
+					s := streamLen - len(*event.LogStreamName) + 1
+					if s < 1 {
+						s = 1
+					}
+					sm := *event.LogStreamName + strings.Repeat(" ", s)
+					if options.StreamLTrim > 0 || options.StreamRTrim > 0 {
+						if options.StreamLTrim > 0 && options.StreamLTrim < len(sm) {
+							sm = sm[options.StreamLTrim:]
+						}
+						if options.StreamRTrim > 0 && options.StreamRTrim < len(sm) {
+							sm = sm[0 : len(sm)-options.StreamRTrim]
+						}
+					}
+					msg += color.CyanString(sm)
 				}
-			}
 
-			// handle red
-			if options.Red != "" {
-				reColor := color.New(color.BgRed).SprintFunc()
-				for _, s := range strings.Split(options.Red, ",") {
-					msg = strings.Replace(msg, s, reColor(s), -1)
+				// handle date format
+				dateFormat := time.RFC3339
+				if options.DateFormat != "" {
+					dateFormat = joda.Format(options.DateFormat)
 				}
-			}
 
-			// handle no color
-			if options.NoColor {
-				msg = util.Unformat(msg)
-			}
-
-			// handle no wrap
-			if options.NoWrap {
-				formatWidth := 4
-				cntFormat := util.CountFormat(msg) * formatWidth
-				if len(msg)-(cntFormat) > width {
-					offset := width - 4
-					cf := util.CountFormat(msg[0:offset]) * formatWidth
-					offset = offset + cf
-					msg = msg[0:offset] + "..."
+				// handle no time and tz
+				if !options.NoTime {
+					t := time.Unix(*event.Timestamp/1000, 0)
+					if options.TimeZone {
+						msg += color.MagentaString(t.Local().Format(dateFormat)) + " "
+					} else {
+						msg += color.MagentaString(t.UTC().Format(dateFormat)) + " "
+					}
 				}
-				if options.Debug {
-					msg += "\n" + strings.Repeat("---------|", int(width/10))
+
+				// add message
+				if options.MessageLTrim > 0 || options.MessageRTrim > 0 {
+					if options.MessageLTrim > 0 && options.MessageLTrim < len(message) {
+						message = message[options.MessageLTrim:]
+					}
+					if options.MessageRTrim > 0 && options.MessageRTrim < len(message) {
+						message = message[0 : len(message)-options.MessageRTrim]
+					}
 				}
+				msg += message
+
+				// handle green
+				if options.Green != "" {
+					reColor := color.New(color.BgGreen).SprintFunc()
+					for _, s := range strings.Split(options.Green, ",") {
+						msg = strings.Replace(msg, s, reColor(s), -1)
+					}
+				}
+
+				// handle yellow
+				if options.Yellow != "" {
+					reColor := color.New(color.BgYellow).SprintFunc()
+					for _, s := range strings.Split(options.Yellow, ",") {
+						msg = strings.Replace(msg, s, reColor(s), -1)
+					}
+				}
+
+				// handle red
+				if options.Red != "" {
+					reColor := color.New(color.BgRed).SprintFunc()
+					for _, s := range strings.Split(options.Red, ",") {
+						msg = strings.Replace(msg, s, reColor(s), -1)
+					}
+				}
+
+				// handle no color
+				if options.NoColor {
+					msg = util.Unformat(msg)
+				}
+
+				// handle no wrap
+				if options.NoWrap {
+					formatWidth := 4
+					cntFormat := util.CountFormat(msg) * formatWidth
+					if len(msg)-(cntFormat) > width {
+						offset := width - 4
+						cf := util.CountFormat(msg[0:offset]) * formatWidth
+						offset = offset + cf
+						msg = msg[0:offset] + "..."
+					}
+					if options.Debug {
+						msg += "\n" + strings.Repeat("---------|", int(width/10))
+					}
+				}
+
+				// output and reset
+				fmt.Printf("%s\n", msg)
+				color.Unset()
+
+				// handle spacing
+				if options.Spacing {
+					fmt.Printf("\n")
+				}
+
+				// keep track
+				lastTimestamp = *event.Timestamp
+				tdiff = tdiff + (*event.IngestionTime - *event.Timestamp)
+				count++
+
 			}
-
-			// output and reset
-			fmt.Printf("%s\n", msg)
-			color.Unset()
-
-			// handle spacing
-			if options.Spacing {
-				fmt.Printf("\n")
-			}
-
-			// keep track
-			lastTimestamp = *event.Timestamp
-			tdiff = tdiff + (*event.IngestionTime - *event.Timestamp)
-			count++
-
 		}
 
 		// debug

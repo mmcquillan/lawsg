@@ -29,6 +29,7 @@ func Defaults(options *Options) {
 	options.StreamRTrim = 0
 	options.MessageLTrim = 0
 	options.MessageRTrim = 0
+	options.MultiLine = false
 	options.DateFormat = ""
 	options.Green = ""
 	options.Yellow = ""
