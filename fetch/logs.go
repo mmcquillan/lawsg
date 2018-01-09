@@ -3,6 +3,7 @@ package fetch
 import (
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -263,7 +264,17 @@ func Logs(options config.Options) {
 			if options.Debug {
 				fmt.Println("==> Sleeping...")
 			}
-			time.Sleep(time.Second * time.Duration(options.Refresh))
+			for i := 0; i < options.Refresh; i++ {
+				umsg := "Updating in " + strconv.Itoa(options.Refresh-i) + " second"
+				if options.Refresh-i == 1 {
+					umsg += "..."
+				} else {
+					umsg += "s..."
+				}
+				fmt.Print(umsg)
+				time.Sleep(time.Second * 1)
+				fmt.Print(strings.Repeat("\b", len(umsg)))
+			}
 			options.StartTime = lastTimestamp + 1
 			options.EndTime = time.Now().Unix() * 1000
 			loop = true

@@ -24,6 +24,9 @@
 
 ### Releases
 
+Next Version
+- Added a countdown before update on the tail option
+
 v0.1.1
 - Added the multi-line formatting option to handle multiple log entries per Event Message
 - Fixed a help issue
