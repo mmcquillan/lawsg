@@ -15,7 +15,7 @@ import (
 )
 
 func Groups(options config.Options) {
-	groups := getGroups(options)
+	groups := ListGroups(options)
 	for _, g := range groups {
 		if options.NoColor {
 			fmt.Printf("%s\n", g)
@@ -30,7 +30,7 @@ func Groups(options config.Options) {
 }
 
 func MatchGroups(options config.Options) {
-	groups := getGroups(options)
+	groups := ListGroups(options)
 	bagSizes := []int{2, 3, 4}
 	cm := closestmatch.New(groups, bagSizes)
 	matches := cm.ClosestN(options.Group, 3)
@@ -43,7 +43,7 @@ func MatchGroups(options config.Options) {
 	}
 }
 
-func getGroups(options config.Options) []string {
+func ListGroups(options config.Options) []string {
 	block := 50
 	count := block
 	nextToken := ""

@@ -49,6 +49,15 @@ CLOUDWATCH FILTER EXAMPLES:
   ' "eggs ham" '      Matches multiple words 'green eggs and ham'
                       More: https://goo.gl/eHztRU
 
+MULTIPLE GROUPS:
+  Query multiple groups by listing them with a comma
+  > lawsg get "syslog,access" -f "error"
+
+  Query all groups with an asterisk
+  > lawsg get "*" -f "error"
+
+  Note - Logs will not be ordered by time as they stream in batches
+
 SAVED CONFIG:
   Display options can be saved in a config file for each group (or global)
   Save to: ~/.lawsg (or ~/.lawsg.json)

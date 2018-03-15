@@ -89,6 +89,18 @@ func Help(options config.Options, version string) {
 		fmt.Println("")
 	}
 
+	if util.Member(options.Group, "multi,multiple,groups,more,docs") {
+		fmt.Println("MULTIPLE GROUPS:")
+		fmt.Println("  Query multiple groups by listing them with a comma")
+		fmt.Println("  > lawsg get \"syslog,access\" -f \"error\"")
+		fmt.Println("")
+		fmt.Println("  Query all groups with an asterisk")
+		fmt.Println("  > lawsg get \"*\" -f \"error\"")
+		fmt.Println("")
+		fmt.Println("  Note - Logs will not be ordered by time as they stream in batches")
+		fmt.Println("")
+	}
+
 	if util.Member(options.Group, "saved,config,more,docs") {
 		fmt.Println("SAVED CONFIG:")
 		fmt.Println("  Display options can be saved in a config file for each group (or global)")

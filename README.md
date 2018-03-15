@@ -24,7 +24,8 @@
 
 ### Releases
 
-Next Version
+v0.2.0
+- Added get for multiple or all log groups
 - Added a countdown before update on the tail option
 
 v0.1.1

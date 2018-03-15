@@ -5,6 +5,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -17,8 +18,35 @@ import (
 	terminal "github.com/wayneashleyberry/terminal-dimensions"
 )
 
+var wg sync.WaitGroup
+
 // Logs - Pulls Event Logs based on option filters
 func Logs(options config.Options) {
+	if options.Group == "*" {
+		groupList := ListGroups(options)
+		for _, group := range groupList {
+			wg.Add(1)
+			options.Group = group
+			options.NoGroup = false
+			go getLogs(options)
+		}
+	} else if strings.Contains(options.Group, ",") {
+		groupList := strings.Split(options.Group, ",")
+		for _, group := range groupList {
+			wg.Add(1)
+			group = strings.TrimSpace(group)
+			options.Group = group
+			options.NoGroup = false
+			go getLogs(options)
+		}
+	} else {
+		wg.Add(1)
+		getLogs(options)
+	}
+	wg.Wait()
+}
+
+func getLogs(options config.Options) {
 
 	// initialize
 	w, _ := terminal.Width()
@@ -309,5 +337,7 @@ func Logs(options config.Options) {
 		stat += " ]\n"
 		fmt.Print(stat)
 	}
+
+	wg.Done()
 
 }
