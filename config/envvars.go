@@ -43,6 +43,7 @@ func EnvVars(options *Options) {
 	options.Refresh = setEnvInt(options.Refresh, "LAWSG_REFRESH")
 	options.Stats = setEnvBool(options.Stats, "LAWSG_STATS")
 	options.Debug = setEnvBool(options.Debug, "LAWSG_DEBUG")
+	options.Env = setEnvString(options.Env, "LAWSG_ENV")
 }
 
 func setEnvString(val string, env string) string {

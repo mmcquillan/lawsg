@@ -37,6 +37,7 @@ type Options struct {
 	Refresh int
 	Stats   bool
 	Debug   bool
+	Env     string
 
 	// stats
 	Timer int64

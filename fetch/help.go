@@ -75,6 +75,7 @@ func Help(options config.Options, version string) {
 		fmt.Println("  -g --group          Group for the command (or second argument)")
 		fmt.Println("     --chunk          Chunk size for retrieving Event Logs [default: 10000]")
 		fmt.Println("     --refresh        Tail Refresh interval in seconds [default: 5]")
+		fmt.Println("     --env            Environment prefix multiple AWS ENV Vars (ex: STAGING_AWS_REGION)")
 		fmt.Println("     --stats          Display Stats from request")
 		fmt.Println("     --debug          Debug of Output")
 		fmt.Println("")

@@ -8,13 +8,13 @@ import (
 var version string
 
 func main() {
-	config.Aws()
 	var options config.Options
 	config.Defaults(&options)
 	config.Commands(&options)
 	config.Saved(&options)
 	config.EnvVars(&options)
 	config.Flags(&options)
+	config.Aws(&options)
 	config.Validate(&options)
 	switch options.Command {
 	case "groups":

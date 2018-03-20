@@ -24,6 +24,9 @@
 
 ### Releases
 
+vNEXT
+- Added `--env` var for multiple AWS ENV vars
+
 v0.2.0
 - Added get for multiple or all log groups
 - Added a countdown before update on the tail option

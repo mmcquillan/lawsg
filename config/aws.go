@@ -6,7 +6,13 @@ import (
 )
 
 // Aws - checks that AWS creds exist
-func Aws() {
+func Aws(options *Options) {
+
+	if options.Env != "" {
+		os.Setenv("AWS_REGION", os.Getenv(options.Env+"_AWS_REGION"))
+		os.Setenv("AWS_ACCESS_KEY_ID", os.Getenv(options.Env+"_AWS_ACCESS_KEY_ID"))
+		os.Setenv("AWS_SECRET_ACCESS_KEY", os.Getenv(options.Env+"_AWS_SECRET_ACCESS_KEY"))
+	}
 
 	if os.Getenv("AWS_REGION") == "" {
 		fmt.Println("ERROR: Missing environment variable AWS_REGION")

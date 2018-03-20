@@ -51,6 +51,9 @@ func Flags(options *Options) {
 	f.IntVar(&options.Refresh, "refresh", options.Refresh, "")
 	f.BoolVar(&options.Stats, "stats", options.Stats, "")
 	f.BoolVar(&options.Debug, "debug", options.Debug, "")
+	f.StringVar(&options.Env, "env", options.Env, "")
+
+	// parse flags
 	f.SetOutput(ioutil.Discard)
 	err := f.Parse(os.Args)
 	if err != nil {

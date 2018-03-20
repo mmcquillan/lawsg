@@ -40,6 +40,7 @@ ADVANCED OPTIONS:
   -g --group          Group for the command (or second argument)
      --chunk          Chunk size for retrieving Event Logs [default: 10000]
      --refresh        Tail Refresh interval in seconds [default: 5]
+     --env            Environment prefix multiple AWS ENV Vars (ex: STAGING_AWS_REGION)
      --stats          Display Stats from request
      --debug          Debug of Output
 

@@ -42,6 +42,7 @@ func Defaults(options *Options) {
 	options.Refresh = 5
 	options.Stats = false
 	options.Debug = false
+	options.Env = ""
 
 	// stats
 	options.Timer = time.Now().UnixNano()
