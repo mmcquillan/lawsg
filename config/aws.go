@@ -14,6 +14,10 @@ func Aws(options *Options) {
 		os.Setenv("AWS_SECRET_ACCESS_KEY", os.Getenv(options.Env+"_AWS_SECRET_ACCESS_KEY"))
 	}
 
+	if options.Region != "" {
+		os.Setenv("AWS_REGION", options.Region)
+	}
+
 	if os.Getenv("AWS_REGION") == "" {
 		fmt.Println("ERROR: Missing environment variable AWS_REGION")
 		os.Exit(1)

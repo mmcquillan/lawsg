@@ -26,6 +26,7 @@
 
 vNEXT
 - Added `--env` var for multiple AWS ENV vars
+- Added `--region` var for overriding or setting the AWS region
 
 v0.2.0
 - Added get for multiple or all log groups

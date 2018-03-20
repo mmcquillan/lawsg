@@ -49,9 +49,10 @@ func Flags(options *Options) {
 	f.StringVarP(&options.Group, "group", "g", options.Group, "")
 	f.Int64Var(&options.Chunk, "chunk", options.Chunk, "")
 	f.IntVar(&options.Refresh, "refresh", options.Refresh, "")
+	f.StringVar(&options.Region, "region", options.Region, "")
+	f.StringVar(&options.Env, "env", options.Env, "")
 	f.BoolVar(&options.Stats, "stats", options.Stats, "")
 	f.BoolVar(&options.Debug, "debug", options.Debug, "")
-	f.StringVar(&options.Env, "env", options.Env, "")
 
 	// parse flags
 	f.SetOutput(ioutil.Discard)

@@ -35,9 +35,10 @@ type Options struct {
 	Command string
 	Group   string
 	Refresh int
+	Region  string
+	Env     string
 	Stats   bool
 	Debug   bool
-	Env     string
 
 	// stats
 	Timer int64

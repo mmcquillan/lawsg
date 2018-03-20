@@ -41,9 +41,10 @@ func EnvVars(options *Options) {
 	options.Group = setEnvString(options.Group, "LAWSG_GROUP")
 	options.Chunk = setEnvInt64(options.Chunk, "LAWSG_CHUNK")
 	options.Refresh = setEnvInt(options.Refresh, "LAWSG_REFRESH")
+	options.Region = setEnvString(options.Region, "LAWSG_REGION")
+	options.Env = setEnvString(options.Env, "LAWSG_ENV")
 	options.Stats = setEnvBool(options.Stats, "LAWSG_STATS")
 	options.Debug = setEnvBool(options.Debug, "LAWSG_DEBUG")
-	options.Env = setEnvString(options.Env, "LAWSG_ENV")
 }
 
 func setEnvString(val string, env string) string {

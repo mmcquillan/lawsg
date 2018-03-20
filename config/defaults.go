@@ -40,9 +40,10 @@ func Defaults(options *Options) {
 	options.Group = ""
 	options.Chunk = 10000
 	options.Refresh = 5
+	options.Region = ""
+	options.Env = ""
 	options.Stats = false
 	options.Debug = false
-	options.Env = ""
 
 	// stats
 	options.Timer = time.Now().UnixNano()
