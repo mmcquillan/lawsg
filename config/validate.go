@@ -38,6 +38,10 @@ func Validate(options *Options) {
 		fmt.Println("ERROR: Start Time is before End Time")
 		os.Exit(1)
 	}
+	if options.StartTime == 0 {
+		fmt.Println("ERROR: Start Time did not parse correctly")
+		os.Exit(1)
+	}
 
 	// validate trims
 	if options.StreamLTrim < 0 {
