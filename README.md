@@ -1,6 +1,7 @@
 # lawsg - The AWS Cloudwatch Logs Viewer
 
 ### Why another cloudwatch CLI?
+- Query one or more Cloudwatch groups
 - Advanced formatting to help you find what you need
 - Highlight keywords in Green, Yellow or Red to capture your attention
 - Display preferences via command line flags, env variables or a config file
