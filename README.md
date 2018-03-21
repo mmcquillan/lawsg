@@ -29,6 +29,7 @@ vNEXT
 - Added `--env` var for multiple AWS ENV vars
 - Added `--region` var for overriding or setting the AWS region
 - Added messaging if Start Time is parsed incorrectly
+- Added `--sortkey` to prefix each line with the epoch timestamp for sorting
 
 v0.2.0
 - Added get for multiple or all log groups

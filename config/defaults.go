@@ -40,6 +40,7 @@ func Defaults(options *Options) {
 	options.Group = ""
 	options.Chunk = 10000
 	options.Refresh = 5
+	options.SortKey = false
 	options.Region = ""
 	options.Env = ""
 	options.Stats = false

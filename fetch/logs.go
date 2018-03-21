@@ -149,6 +149,11 @@ func getLogs(options config.Options) {
 				// init event
 				msg := ""
 
+				// handle sort key
+				if options.SortKey {
+					msg += fmt.Sprintf("%d ", *event.Timestamp)
+				}
+
 				// handle no group
 				if !options.NoGroup {
 					msg += color.GreenString(options.Group) + " "

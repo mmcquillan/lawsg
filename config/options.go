@@ -35,6 +35,7 @@ type Options struct {
 	Command string
 	Group   string
 	Refresh int
+	SortKey bool
 	Region  string
 	Env     string
 	Stats   bool

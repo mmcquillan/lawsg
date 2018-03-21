@@ -48,6 +48,7 @@ func Flags(options *Options) {
 	f.StringVarP(&options.Command, "command", "c", options.Command, "")
 	f.StringVarP(&options.Group, "group", "g", options.Group, "")
 	f.Int64Var(&options.Chunk, "chunk", options.Chunk, "")
+	f.BoolVar(&options.SortKey, "sortkey", options.SortKey, "")
 	f.IntVar(&options.Refresh, "refresh", options.Refresh, "")
 	f.StringVar(&options.Region, "region", options.Region, "")
 	f.StringVar(&options.Env, "env", options.Env, "")

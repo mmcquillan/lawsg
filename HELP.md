@@ -39,6 +39,7 @@ ADVANCED OPTIONS:
   -c --command        Command to run groups, streams, get, help (or first argument)
   -g --group          Group for the command (or second argument)
      --chunk          Chunk size for retrieving Event Logs [default: 10000]
+     --sortkey        Add each line with a sortable time based key [default: false]
      --refresh        Tail Refresh interval in seconds [default: 5]
      --region         Override or set the AWS Region
      --env            Environment prefix multiple AWS ENV Vars (ex: STAGING_AWS_REGION)
@@ -112,6 +113,7 @@ ENVIRONMENT VARIABLES:
   LAWSG_COMMAND        Command to run groups, streams, get, help (or first argument)
   LAWSG_GROUP          Group for the command (or second argument)
   LAWSG_CHUNK          Chunk size for retrieving Event Logs [default: 10000]
+  LAWSG_SORTKEY        Add each line with a sortable time based key [default: false]
   LAWSG_REFRESH        Tail Refresh interval in seconds [default: 5]
   LAWSG_REGION         Override or set the AWS Region
   LAWSG_ENV            Environment prefix multiple AWS ENV Vars (ex: STAGING_AWS_REGION)
