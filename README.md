@@ -8,6 +8,10 @@
 - Help for when you can't quite remember the group name
 
 
+### Features
+- [Detailed Help](HELP.md)
+
+
 ### Get Started
 1. Install on Mac via brew: `brew install mmcquillan/tools/lawsg`
 2. Alternatively compile via go: `go get github.com/mmcquillan/lawsg`
@@ -19,13 +23,9 @@
 5. Enjoy all your wonderful logs!
 
 
-### How to Use
-[Detailed Help](HELP.md)
-
-
 ### Releases
 
-vNEXT
+v0.3.0
 - Added `--env` var for multiple AWS ENV vars
 - Added `--region` var for overriding or setting the AWS region
 - Added messaging if Start Time is parsed incorrectly
