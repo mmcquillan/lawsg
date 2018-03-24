@@ -64,7 +64,7 @@ ADVANCED OPTIONS:
      --stats          Display Stats from request
      --debug          Debug of Output
 ```
-[More Detailed Help...](HELP.md)
+[More Detailed Features and Help...](HELP.md)
 
 
 ### Releases
