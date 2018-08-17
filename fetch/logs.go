@@ -27,7 +27,6 @@ func Logs(options config.Options) {
 		for _, group := range groupList {
 			wg.Add(1)
 			options.Group = group
-			options.NoGroup = false
 			go getLogs(options)
 		}
 	} else if strings.Contains(options.Group, ",") {
@@ -36,7 +35,6 @@ func Logs(options config.Options) {
 			wg.Add(1)
 			group = strings.TrimSpace(group)
 			options.Group = group
-			options.NoGroup = false
 			go getLogs(options)
 		}
 	} else {
