@@ -159,6 +159,8 @@ AWS CREDENTIALS:
   AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY
 
+  Or ~/.aws/credentials
+  with AWS_SDK_LOAD_CONFIG set
 ABOUT:
   lawsg 
   Free to Use and Contribute via the MIT License
