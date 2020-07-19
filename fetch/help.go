@@ -215,6 +215,8 @@ func Help(options config.Options, version string) {
 		fmt.Println("  AWS_ACCESS_KEY_ID")
 		fmt.Println("  AWS_SECRET_ACCESS_KEY")
 		fmt.Println("")
+		fmt.Println("  Or ~/.aws/credentials")
+		fmt.Println("  with AWS_SDK_LOAD_CONFIG set")
 	}
 
 	if util.Member(options.Group, "about,more,docs") {
