@@ -72,7 +72,7 @@ func ListGroups(options config.Options) []string {
 			groupList[i] = *logGroup.LogGroupName
 		}
 		groups = append(groups, groupList...)
-		if count >= block {
+		if count > block {
 			nextToken = *resp.NextToken
 		}
 	}
